@@ -3,64 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Personal portfolio of Alex Rivera - Creative Developer & Digital Artist">
-    <meta name="keywords" content="creative developer, digital artist, portfolio, frontend, animation, design">
-    <meta name="author" content="Alex Rivera">
     
-    <!-- Open Graph Meta Tags for Social Sharing -->
-    <meta property="og:title" content="Alex Rivera - Creative Portfolio">
-    <meta property="og:description" content="Immersive portfolio showcasing creative development and digital artistry">
+    <!-- SEO Meta Tags -->
+    <title>Elena Chen - Data Scientist & AI Engineer | Analytics Portfolio</title>
+    <meta name="description" content="Elena Chen - Data Scientist and AI Engineer specializing in machine learning, data visualization, and predictive analytics. View my data science portfolio.">
+    <meta name="keywords" content="data scientist, AI engineer, machine learning, data analysis, python, data visualization, predictive analytics, big data">
+    <meta name="author" content="Elena Chen">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Elena Chen - Data Scientist & AI Engineer">
+    <meta property="og:description" content="Transforming data into insights through advanced analytics and AI solutions">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourusername.github.io">
+    <meta property="og:url" content="https://elenachen.github.io">
+    <meta property="og:image" content="https://elenachen.github.io/preview.jpg">
     
-    <title>Alex Rivera - Creative Developer</title>
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Elena Chen - Data Scientist & AI Engineer">
+    <meta name="twitter:description" content="Transforming data into insights through advanced analytics and AI solutions">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%234f46e5'/><circle cx='50' cy='50' r='20' fill='%23f59e0b'/><circle cx='50' cy='50' r='8' fill='%23ffffff'/></svg>">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- CSS -->
+    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Particle Background Container -->
-    <div id="particle-canvas" class="particle-canvas"></div>
+    <!-- Data Stream Background -->
+    <div id="data-stream-bg" class="data-stream-background"></div>
     
-    <!-- Animated Blob Background -->
-    <div class="blob-container">
-        <svg class="blob-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="blobGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.8" />
-                    <stop offset="50%" style="stop-color:#764ba2;stop-opacity:0.6" />
-                    <stop offset="100%" style="stop-color:#f093fb;stop-opacity:0.4" />
-                </linearGradient>
-            </defs>
-            <path class="blob-path" d="M40,-55.8C50.7,-45.2,58.4,-31.7,63.6,-16.8C68.8,-1.9,71.5,14.4,67.9,28.3C64.3,42.2,54.4,53.7,42.1,60.8C29.8,67.9,15.1,70.6,-0.5,71.3C-16.1,72,-32.2,70.7,-44.8,63.6C-57.4,56.5,-66.5,43.6,-70.1,29.4C-73.7,15.2,-71.8,-0.3,-66.6,-14.4C-61.4,-28.5,-52.9,-41.2,-41.2,-51.7C-29.5,-62.2,-14.7,-70.5,0.8,-71.6C16.3,-72.7,32.6,-66.6,40,-55.8Z" fill="url(#blobGradient)" />
-        </svg>
-    </div>
-
+    <!-- Cursor Follower for Desktop -->
+    <div id="cursor-follower" class="cursor-follower"></div>
+    
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
+            <!-- Logo with Data Visualization -->
             <a href="#home" class="nav-logo" aria-label="Home">
-                <div class="logo-container">
-                    <svg class="logo-svg" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#667eea" />
-                                <stop offset="100%" style="stop-color:#764ba2" />
-                            </linearGradient>
-                        </defs>
-                        <circle class="logo-circle" cx="25" cy="25" r="20" fill="url(#logoGradient)" />
-                        <path class="logo-path" d="M15 20 L25 30 L35 20" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <span class="logo-text">AR</span>
-                </div>
+                <svg class="logo-viz" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Animated data bars -->
+                    <rect class="data-bar bar-1" x="5" y="25" width="4" height="10" fill="#4f46e5"/>
+                    <rect class="data-bar bar-2" x="12" y="20" width="4" height="15" fill="#7c3aed"/>
+                    <rect class="data-bar bar-3" x="19" y="15" width="4" height="20" fill="#f59e0b"/>
+                    <rect class="data-bar bar-4" x="26" y="18" width="4" height="17" fill="#06b6d4"/>
+                    <rect class="data-bar bar-5" x="33" y="12" width="4" height="23" fill="#10b981"/>
+                    <rect class="data-bar bar-6" x="40" y="22" width="4" height="13" fill="#f97316"/>
+                    <!-- Neural network connections -->
+                    <path class="neural-path" d="M7,30 Q15,25 21,17 Q27,20 35,14" stroke="#4f46e5" stroke-width="1" fill="none" opacity="0.6"/>
+                    <circle class="neural-node" cx="7" cy="30" r="2" fill="#4f46e5"/>
+                    <circle class="neural-node" cx="21" cy="17" r="2" fill="#7c3aed"/>
+                    <circle class="neural-node" cx="35" cy="14" r="2" fill="#f59e0b"/>
+                </svg>
+                <span class="logo-text">Elena<span class="logo-accent">.ai</span></span>
             </a>
             
             <!-- Mobile Menu Toggle -->
@@ -75,398 +75,480 @@
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Interactive Data Visualization -->
     <section id="home" class="hero-section" role="banner">
+        <!-- Interactive Background Grid -->
         <div class="hero-background">
-            <canvas id="neural-network" class="neural-canvas"></canvas>
+            <canvas id="neural-network-bg" class="neural-canvas"></canvas>
+            <div class="data-grid-overlay"></div>
         </div>
+        
         <div class="hero-container">
             <div class="hero-content">
-                <div class="text-reveal-container">
+                <!-- Animated Text with Data Typing Effect -->
+                <div class="hero-title-container">
                     <h1 class="hero-title">
-                        <span class="hero-greeting glitch-text" data-text="Hello, I'm">Hello, I'm</span>
-                        <span class="hero-name morphing-text">Alex Rivera</span>
+                        <span class="hero-greeting">Hi, I'm</span>
+                        <span class="hero-name">Elena Chen</span>
+                        <div class="hero-subtitle-wrapper">
+                            <span class="hero-subtitle">Data Scientist & </span>
+                            <span class="typing-text" data-words='["AI Engineer", "ML Specialist", "Analytics Expert", "Data Storyteller"]'></span>
+                            <span class="typing-cursor">|</span>
+                        </div>
                     </h1>
                 </div>
-                <div class="typewriter-container">
-                    <p class="hero-subtitle typewriter-text">Creative Developer & Digital Artist</p>
-                </div>
+                
                 <p class="hero-description">
-                    I craft immersive digital experiences that blur the line between art and code, 
-                    creating interactive worlds where imagination meets innovation through cutting-edge 
-                    web technologies and creative storytelling.
+                    I transform complex datasets into actionable insights using advanced machine learning 
+                    algorithms and statistical modeling. Passionate about uncovering patterns in data 
+                    that drive strategic business decisions and innovation.
                 </p>
+                
+                <!-- Interactive CTA Buttons -->
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary magnetic-btn">
-                        <span class="btn-text">Explore Work</span>
-                        <div class="btn-particles"></div>
+                    <a href="#projects" class="btn btn-primary data-pulse-btn">
+                        <span class="btn-text">View Analytics Projects</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
                     </a>
-                    <a href="#contact" class="btn btn-secondary holographic-btn">
-                        <span class="btn-text">Let's Connect</span>
-                        <div class="hologram-layer"></div>
+                    <a href="#contact" class="btn btn-secondary ml-flow-btn">
+                        <span class="btn-text">Collaborate</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="m8 16 4-4 4 4"/>
+                            <path d="m16 8-4 4-4-4"/>
+                        </svg>
                     </a>
+                </div>
+                
+                <!-- Live Data Metrics -->
+                <div class="hero-metrics">
+                    <div class="metric-item">
+                        <span class="metric-number" data-target="50">0</span>
+                        <span class="metric-label">ML Models Deployed</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-number" data-target="1.2">0</span>
+                        <span class="metric-suffix">M+</span>
+                        <span class="metric-label">Data Points Analyzed</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-number" data-target="95">0</span>
+                        <span class="metric-suffix">%</span>
+                        <span class="metric-label">Prediction Accuracy</span>
+                    </div>
                 </div>
             </div>
+            
+            <!-- Interactive Data Visualization -->
             <div class="hero-visual">
-                <div class="floating-geometry">
-                    <svg class="geometry-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <filter id="glow">
-                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                                <feMerge> 
-                                    <feMergeNode in="coloredBlur"/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
-                            <linearGradient id="geometryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#667eea" />
-                                <stop offset="50%" style="stop-color:#764ba2" />
-                                <stop offset="100%" style="stop-color:#f093fb" />
-                            </linearGradient>
-                        </defs>
-                        <!-- Animated geometric shapes -->
-                        <polygon class="floating-shape shape-1" points="200,50 250,150 150,150" fill="none" stroke="url(#geometryGradient)" stroke-width="2" filter="url(#glow)" />
-                        <circle class="floating-shape shape-2" cx="200" cy="200" r="60" fill="none" stroke="url(#geometryGradient)" stroke-width="2" filter="url(#glow)" />
-                        <rect class="floating-shape shape-3" x="150" y="280" width="100" height="60" rx="10" fill="none" stroke="url(#geometryGradient)" stroke-width="2" filter="url(#glow)" />
-                        <path class="floating-shape shape-4" d="M100,200 Q200,100 300,200 Q200,300 100,200" fill="none" stroke="url(#geometryGradient)" stroke-width="2" filter="url(#glow)" />
-                    </svg>
+                <div class="data-visualization-container">
+                    <!-- 3D Data Cube -->
+                    <div class="data-cube-wrapper">
+                        <div class="data-cube">
+                            <div class="cube-face front">
+                                <svg viewBox="0 0 200 200" class="face-viz">
+                                    <defs>
+                                        <linearGradient id="cubeGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:0.8"/>
+                                            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:0.4"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <circle class="data-point" cx="50" cy="50" r="3" fill="#4f46e5"/>
+                                    <circle class="data-point" cx="150" cy="80" r="4" fill="#7c3aed"/>
+                                    <circle class="data-point" cx="100" cy="120" r="2" fill="#f59e0b"/>
+                                    <circle class="data-point" cx="80" cy="160" r="5" fill="#06b6d4"/>
+                                    <path class="data-connection" d="M50,50 L150,80 L100,120 L80,160" stroke="url(#cubeGrad1)" stroke-width="1" fill="none"/>
+                                </svg>
+                            </div>
+                            <div class="cube-face back"></div>
+                            <div class="cube-face right"></div>
+                            <div class="cube-face left"></div>
+                            <div class="cube-face top"></div>
+                            <div class="cube-face bottom"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Algorithm Symbols -->
+                    <div class="algorithm-symbols">
+                        <div class="symbol symbol-1" data-formula="Σ">Σ</div>
+                        <div class="symbol symbol-2" data-formula="∫">∫</div>
+                        <div class="symbol symbol-3" data-formula="∇">∇</div>
+                        <div class="symbol symbol-4" data-formula="λ">λ</div>
+                        <div class="symbol symbol-5" data-formula="α">α</div>
+                    </div>
+                    
+                    <!-- Interactive Chart -->
+                    <div class="mini-chart-container">
+                        <canvas id="hero-chart" class="hero-chart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <!-- Scroll Indicator with Morphing Arrow -->
+        <!-- Scroll Indicator with Data Flow -->
         <div class="scroll-indicator" aria-hidden="true">
-            <svg class="scroll-arrow-svg" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                <path class="scroll-arrow-path" d="M20,10 L20,25 M15,20 L20,25 L25,20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <span class="scroll-text">Scroll to explore</span>
+            <div class="scroll-data-flow">
+                <div class="data-bit"></div>
+                <div class="data-bit"></div>
+                <div class="data-bit"></div>
+            </div>
+            <span class="scroll-text">Explore Data Journey</span>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section with Interactive Biography -->
     <section id="about" class="about-section" role="main">
+        <!-- Section Background with Animated Patterns -->
         <div class="section-bg-pattern">
             <svg class="pattern-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(102, 126, 234, 0.1)" stroke-width="0.5"/>
+                    <pattern id="dataPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <rect width="20" height="20" fill="rgba(79, 70, 229, 0.02)"/>
+                        <circle cx="10" cy="10" r="1" fill="rgba(79, 70, 229, 0.1)"/>
+                        <path d="M0,10 L20,10 M10,0 L10,20" stroke="rgba(79, 70, 229, 0.05)" stroke-width="0.5"/>
                     </pattern>
                 </defs>
-                <rect width="100%" height="100%" fill="url(#grid)" />
+                <rect width="100%" height="100%" fill="url(#dataPattern)"/>
             </svg>
         </div>
         
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title split-text">About Me</h2>
-                <p class="section-subtitle fade-up">Crafting digital experiences with passion and precision</p>
+                <h2 class="section-title split-reveal">About My Data Journey</h2>
+                <p class="section-subtitle">Bridging the gap between raw data and strategic insights</p>
             </div>
             
             <div class="about-content">
-                <div class="about-text card-3d">
-                    <div class="about-intro">
-                        <p class="reveal-text">
-                            I'm a passionate creator who bridges the gap between imagination and reality through code. 
-                            With 5+ years of experience in creative development, I specialize in building interactive 
-                            experiences that captivate, engage, and inspire audiences across digital platforms.
-                        </p>
-                        <p class="reveal-text">
-                            My journey began with curiosity about how digital art could come alive through interaction. 
-                            Today, I combine cutting-edge web technologies with artistic vision to create immersive 
-                            experiences that push the boundaries of what's possible in the browser.
-                        </p>
-                    </div>
-                    
-                    <div class="skills-container">
-                        <h3 class="skills-title">Creative Toolkit</h3>
-                        <div class="skills-grid">
-                            <div class="skill-category floating-card">
-                                <div class="skill-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"/>
-                                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"/>
-                                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"/>
-                                    </svg>
+                <!-- Biography with Interactive Timeline -->
+                <div class="about-text-container">
+                    <div class="about-text">
+                        <div class="bio-intro">
+                            <p class="reveal-text">
+                                With over 5 years of experience in data science and machine learning, 
+                                I specialize in building end-to-end analytics solutions that transform 
+                                business operations. My expertise spans from exploratory data analysis 
+                                to deploying production-ready ML models at scale.
+                            </p>
+                            <p class="reveal-text">
+                                I hold a Master's in Data Science from UC Berkeley and have worked 
+                                with Fortune 500 companies to implement AI-driven solutions that 
+                                generated millions in value through optimized decision-making and 
+                                predictive analytics.
+                            </p>
+                        </div>
+                        
+                        <!-- Interactive Experience Timeline -->
+                        <div class="experience-timeline">
+                            <h3>Professional Journey</h3>
+                            <div class="timeline-container">
+                                <div class="timeline-item" data-year="2019">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h4>Data Analyst</h4>
+                                        <p>Started journey in financial analytics</p>
+                                    </div>
                                 </div>
-                                <h4>Frontend Artistry</h4>
-                                <ul class="skill-list">
-                                    <li>React & Three.js</li>
-                                    <li>GSAP & WebGL</li>
-                                    <li>TypeScript & Next.js</li>
-                                    <li>Creative CSS & Animations</li>
-                                </ul>
-                            </div>
-                            <div class="skill-category floating-card">
-                                <div class="skill-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
-                                        <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2"/>
-                                        <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2"/>
-                                    </svg>
+                                <div class="timeline-item" data-year="2021">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h4>ML Engineer</h4>
+                                        <p>Built first production ML pipeline</p>
+                                    </div>
                                 </div>
-                                <h4>Digital Canvas</h4>
-                                <ul class="skill-list">
-                                    <li>Interactive Design</li>
-                                    <li>Motion Graphics</li>
-                                    <li>3D Visualization</li>
-                                    <li>Creative Coding</li>
-                                </ul>
-                            </div>
-                            <div class="skill-category floating-card">
-                                <div class="skill-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5 12,2" stroke="currentColor" stroke-width="2"/>
-                                        <line x1="12" y1="22" x2="12" y2="12" stroke="currentColor" stroke-width="2"/>
-                                        <polyline points="22,8.5 12,15 2,8.5" stroke="currentColor" stroke-width="2"/>
-                                    </svg>
+                                <div class="timeline-item" data-year="2023">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h4>Senior Data Scientist</h4>
+                                        <p>Leading AI strategy and implementation</p>
+                                    </div>
                                 </div>
-                                <h4>Innovation Lab</h4>
-                                <ul class="skill-list">
-                                    <li>AI-Powered Tools</li>
-                                    <li>Creative Algorithms</li>
-                                    <li>Performance Optimization</li>
-                                    <li>Experimental Tech</li>
-                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="about-stats">
-                    <div class="stat-item liquid-morph">
-                        <div class="stat-bg-morph"></div>
-                        <span class="stat-number" data-count="75">0</span>
-                        <span class="stat-label">Projects Crafted</span>
+                <!-- Interactive Data Philosophy -->
+                <div class="data-philosophy">
+                    <div class="philosophy-card">
+                        <div class="card-header">
+                            <svg class="philosophy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 11H5a2 2 0 0 0-2 2v3c0 1.1.9 2 2 2h4m-4-5V9a2 2 0 0 1 2-2h4m0 11v-5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2Z"/>
+                            </svg>
+                            <h3>Data Philosophy</h3>
+                        </div>
+                        <blockquote class="philosophy-quote">
+                            "Data is not just numbers—it's the digital DNA of human behavior, 
+                            market dynamics, and future possibilities waiting to be decoded."
+                        </blockquote>
                     </div>
-                    <div class="stat-item liquid-morph">
-                        <div class="stat-bg-morph"></div>
-                        <span class="stat-number" data-count="42">0</span>
-                        <span class="stat-label">Happy Clients</span>
-                    </div>
-                    <div class="stat-item liquid-morph">
-                        <div class="stat-bg-morph"></div>
-                        <span class="stat-number" data-count="5">0</span>
-                        <span class="stat-label">Years Creating</span>
+                    
+                    <!-- Animated Statistics Visualization -->
+                    <div class="stats-visualization">
+                        <div class="stat-chart-container">
+                            <canvas id="about-stats-chart" class="stats-chart"></canvas>
+                        </div>
+                        <div class="stats-labels">
+                            <div class="stat-label">
+                                <span class="stat-color python"></span>
+                                <span>Python/ML</span>
+                            </div>
+                            <div class="stat-label">
+                                <span class="stat-color sql"></span>
+                                <span>SQL/Databases</span>
+                            </div>
+                            <div class="stat-label">
+                                <span class="stat-color viz"></span>
+                                <span>Visualization</span>
+                            </div>
+                            <div class="stat-label">
+                                <span class="stat-color cloud"></span>
+                                <span>Cloud/MLOps</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Featured Projects Section -->
     <section id="projects" class="projects-section">
+        <!-- Animated Background with Data Flow -->
         <div class="projects-bg">
-            <div class="floating-elements">
-                <div class="floating-element"></div>
-                <div class="floating-element"></div>
-                <div class="floating-element"></div>
+            <div class="data-flow-container">
+                <div class="data-stream stream-1"></div>
+                <div class="data-stream stream-2"></div>
+                <div class="data-stream stream-3"></div>
             </div>
         </div>
         
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title split-text">Featured Creations</h2>
-                <p class="section-subtitle fade-up">Digital experiences that push creative boundaries</p>
+                <h2 class="section-title split-reveal">Featured Analytics Projects</h2>
+                <p class="section-subtitle">Real-world applications of data science and machine learning</p>
             </div>
             
             <div class="projects-grid">
-                <!-- Project 1 -->
-                <article class="project-card magnetic-project">
-                    <div class="project-image">
-                        <div class="project-bg-pattern">
-                            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="projectGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#667eea" />
-                                        <stop offset="100%" style="stop-color:#764ba2" />
-                                    </linearGradient>
-                                </defs>
-                                <rect width="100%" height="100%" fill="url(#projectGrad1)" opacity="0.8"/>
-                                <circle cx="100" cy="75" r="30" fill="rgba(255,255,255,0.2)"/>
-                                <circle cx="300" cy="175" r="40" fill="rgba(255,255,255,0.1)"/>
-                                <polygon points="200,50 250,100 200,150 150,100" fill="rgba(255,255,255,0.15)"/>
-                            </svg>
+                <!-- Project 1: Predictive Analytics -->
+                <article class="project-card cursor-interactive" data-category="prediction">
+                    <div class="project-visual">
+                        <div class="project-chart-container">
+                            <canvas class="project-chart" data-chart="prediction"></canvas>
                         </div>
                         <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link ripple-effect" aria-label="View live demo">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                                        <polyline points="15,3 21,3 21,9"></polyline>
-                                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                                    </svg>
-                                </a>
-                                <a href="#" class="project-link ripple-effect" aria-label="View source code">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"></path>
-                                    </svg>
-                                </a>
+                            <div class="overlay-content">
+                                <div class="tech-stack">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Scikit-learn</span>
+                                    <span class="tech-tag">TensorFlow</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="project-link" aria-label="View live demo">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                                            <polyline points="15,3 21,3 21,9"/>
+                                            <line x1="10" y1="14" x2="21" y2="3"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="project-link" aria-label="View source code">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">NeuroFlow Platform</h3>
+                        <h3 class="project-title">Customer Behavior Prediction Engine</h3>
                         <p class="project-description">
-                            An immersive data visualization platform that transforms complex neural network 
-                            architectures into interactive 3D experiences using WebGL and machine learning APIs.
+                            Built an ensemble ML model combining Random Forest and XGBoost to predict 
+                            customer churn with 94% accuracy. Implemented real-time scoring pipeline 
+                            processing 100K+ predictions daily, resulting in 23% reduction in churn rate.
                         </p>
-                        <div class="project-tech">
-                            <span class="tech-tag glow-tag">Three.js</span>
-                            <span class="tech-tag glow-tag">WebGL</span>
-                            <span class="tech-tag glow-tag">Python ML</span>
-                            <span class="tech-tag glow-tag">D3.js</span>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">94%</span>
+                                <span class="metric-desc">Accuracy</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">23%</span>
+                                <span class="metric-desc">Churn Reduction</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">$2.1M</span>
+                                <span class="metric-desc">Revenue Impact</span>
+                            </div>
                         </div>
                     </div>
                 </article>
 
-                <!-- Project 2 -->
-                <article class="project-card magnetic-project">
-                    <div class="project-image">
-                        <div class="project-bg-pattern">
-                            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="projectGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#764ba2" />
-                                        <stop offset="100%" style="stop-color:#f093fb" />
-                                    </linearGradient>
-                                </defs>
-                                <rect width="100%" height="100%" fill="url(#projectGrad2)" opacity="0.8"/>
-                                <path d="M50,125 Q200,50 350,125 Q200,200 50,125" fill="rgba(255,255,255,0.2)"/>
-                                <circle cx="80" cy="180" r="25" fill="rgba(255,255,255,0.15)"/>
-                                <rect x="280" y="80" width="60" height="60" rx="10" fill="rgba(255,255,255,0.1)"/>
-                            </svg>
+                <!-- Project 2: NLP Analysis -->
+                <article class="project-card cursor-interactive" data-category="nlp">
+                    <div class="project-visual">
+                        <div class="project-chart-container">
+                            <canvas class="project-chart" data-chart="sentiment"></canvas>
                         </div>
                         <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link ripple-effect" aria-label="View live demo">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                                        <polyline points="15,3 21,3 21,9"></polyline>
-                                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                                    </svg>
-                                </a>
-                                <a href="#" class="project-link ripple-effect" aria-label="View source code">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"></path>
-                                    </svg>
-                                </a>
+                            <div class="overlay-content">
+                                <div class="tech-stack">
+                                    <span class="tech-tag">BERT</span>
+                                    <span class="tech-tag">spaCy</span>
+                                    <span class="tech-tag">PyTorch</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="project-link" aria-label="View live demo">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                                            <polyline points="15,3 21,3 21,9"/>
+                                            <line x1="10" y1="14" x2="21" y2="3"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="project-link" aria-label="View source code">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Quantum Music Studio</h3>
+                        <h3 class="project-title">Social Media Sentiment Intelligence</h3>
                         <p class="project-description">
-                            A revolutionary music creation tool that uses quantum algorithms to generate 
-                            adaptive soundscapes, featuring real-time audio visualization and collaborative composition.
+                            Developed a real-time sentiment analysis system processing 500K+ social media 
+                            posts daily using BERT transformers. Created interactive dashboards for brand 
+                            monitoring that increased response time to negative sentiment by 75%.
                         </p>
-                        <div class="project-tech">
-                            <span class="tech-tag glow-tag">Web Audio</span>
-                            <span class="tech-tag glow-tag">React</span>
-                            <span class="tech-tag glow-tag">WebRTC</span>
-                            <span class="tech-tag glow-tag">Canvas</span>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">500K+</span>
+                                <span class="metric-desc">Posts/Day</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">92%</span>
+                                <span class="metric-desc">Sentiment Accuracy</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">75%</span>
+                                <span class="metric-desc">Faster Response</span>
+                            </div>
                         </div>
                     </div>
                 </article>
 
-                <!-- Project 3 -->
-                <article class="project-card magnetic-project">
-                    <div class="project-image">
-                        <div class="project-bg-pattern">
-                            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="projectGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#f093fb" />
-                                        <stop offset="100%" style="stop-color:#667eea" />
-                                    </linearGradient>
-                                </defs>
-                                <rect width="100%" height="100%" fill="url(#projectGrad3)" opacity="0.8"/>
-                                <polygon points="200,25 320,125 200,225 80,125" fill="rgba(255,255,255,0.2)"/>
-                                <circle cx="120" cy="70" r="20" fill="rgba(255,255,255,0.15)"/>
-                                <circle cx="280" cy="180" r="35" fill="rgba(255,255,255,0.1)"/>
-                            </svg>
+                <!-- Project 3: Computer Vision -->
+                <article class="project-card cursor-interactive" data-category="vision">
+                    <div class="project-visual">
+                        <div class="project-chart-container">
+                            <canvas class="project-chart" data-chart="detection"></canvas>
                         </div>
                         <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link ripple-effect" aria-label="View live demo">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                                        <polyline points="15,3 21,3 21,9"></polyline>
-                                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                                    </svg>
-                                </a>
-                                <a href="#" class="project-link ripple-effect" aria-label="View source code">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"></path>
-                                    </svg>
-                                </a>
+                            <div class="overlay-content">
+                                <div class="tech-stack">
+                                    <span class="tech-tag">OpenCV</span>
+                                    <span class="tech-tag">YOLOv8</span>
+                                    <span class="tech-tag">PyTorch</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="project-link" aria-label="View live demo">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                                            <polyline points="15,3 21,3 21,9"/>
+                                            <line x1="10" y1="14" x2="21" y2="3"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="project-link" aria-label="View source code">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Aurora AR Gallery</h3>
+                        <h3 class="project-title">AI-Powered Quality Inspection</h3>
                         <p class="project-description">
-                            An augmented reality art gallery that brings digital masterpieces into physical spaces, 
-                            featuring gesture controls and AI-powered art recommendations.
+                            Implemented computer vision system for automated quality control in manufacturing. 
+                            Custom CNN model achieved 99.2% defect detection accuracy, reducing manual 
+                            inspection time by 80% and improving overall product quality metrics.
                         </p>
-                        <div class="project-tech">
-                            <span class="tech-tag glow-tag">AR.js</span>
-                            <span class="tech-tag glow-tag">TensorFlow</span>
-                            <span class="tech-tag glow-tag">WebXR</span>
-                            <span class="tech-tag glow-tag">Vue.js</span>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">99.2%</span>
+                                <span class="metric-desc">Detection Rate</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">80%</span>
+                                <span class="metric-desc">Time Reduction</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">15%</span>
+                                <span class="metric-desc">Quality Improvement</span>
+                            </div>
                         </div>
                     </div>
                 </article>
 
-                <!-- Project 4 -->
-                <article class="project-card magnetic-project">
-                    <div class="project-image">
-                        <div class="project-bg-pattern">
-                            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="projectGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#4facfe" />
-                                        <stop offset="100%" style="stop-color:#00f2fe" />
-                                    </linearGradient>
-                                </defs>
-                                <rect width="100%" height="100%" fill="url(#projectGrad4)" opacity="0.8"/>
-                                <path d="M50,50 L350,50 L300,200 L100,200 Z" fill="rgba(255,255,255,0.15)"/>
-                                <circle cx="300" cy="100" r="30" fill="rgba(255,255,255,0.2)"/>
-                                <rect x="80" y="150" width="80" height="50" rx="10" fill="rgba(255,255,255,0.1)"/>
-                            </svg>
+                <!-- Project 4: Time Series -->
+                <article class="project-card cursor-interactive" data-category="timeseries">
+                    <div class="project-visual">
+                        <div class="project-chart-container">
+                            <canvas class="project-chart" data-chart="timeseries"></canvas>
                         </div>
                         <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link ripple-effect" aria-label="View live demo">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                                        <polyline points="15,3 21,3 21,9"></polyline>
-                                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                                    </svg>
-                                </a>
-                                <a href="#" class="project-link ripple-effect" aria-label="View source code">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"></path>
-                                    </svg>
-                                </a>
+                            <div class="overlay-content">
+                                <div class="tech-stack">
+                                    <span class="tech-tag">Prophet</span>
+                                    <span class="tech-tag">LSTM</span>
+                                    <span class="tech-tag">Pandas</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="project-link" aria-label="View live demo">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                                            <polyline points="15,3 21,3 21,9"/>
+                                            <line x1="10" y1="14" x2="21" y2="3"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="project-link" aria-label="View source code">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Ethereal Portfolio</h3>
+                        <h3 class="project-title">Financial Market Forecasting</h3>
                         <p class="project-description">
-                            A next-generation portfolio experience featuring morphing geometries, particle systems, 
-                            and fluid animations that adapt to user interactions in real-time.
+                            Built hybrid time series models combining Prophet and LSTM networks for 
+                            multi-horizon financial forecasting. Achieved 87% directional accuracy 
+                            in stock price movements, outperforming traditional econometric models.
                         </p>
-                        <div class="project-tech">
-                            <span class="tech-tag glow-tag">GSAP</span>
-                            <span class="tech-tag glow-tag">WebGL</span>
-                            <span class="tech-tag glow-tag">Shaders</span>
-                            <span class="tech-tag glow-tag">Creative CSS</span>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">87%</span>
+                                <span class="metric-desc">Directional Accuracy</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">3.2%</span>
+                                <span class="metric-desc">MAPE</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">$500K</span>
+                                <span class="metric-desc">Trading Alpha</span>
+                            </div>
                         </div>
                     </div>
                 </article>
@@ -474,171 +556,398 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="contact-bg-animation">
-            <div class="wave-container">
-                <svg class="wave-svg" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.8" />
-                            <stop offset="50%" style="stop-color:#764ba2;stop-opacity:0.6" />
-                            <stop offset="100%" style="stop-color:#f093fb;stop-opacity:0.4" />
-                        </linearGradient>
-                    </defs>
-                    <path class="wave-path" d="M0,60 C300,0 600,120 900,60 C1050,30 1200,90 1200,60 L1200,120 L0,120 Z" fill="url(#waveGradient)" />
-                </svg>
-            </div>
+    <!-- Skills Section with Interactive Tech Stack -->
+    <section id="skills" class="skills-section">
+        <!-- Background with Animated Code Patterns -->
+        <div class="skills-bg">
+            <div class="code-rain"></div>
         </div>
         
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title split-text">Let's Create Together</h2>
-                <p class="section-subtitle fade-up">Ready to bring your vision to life</p>
+                <h2 class="section-title split-reveal">Technical Expertise</h2>
+                <p class="section-subtitle">Building the future with data science and AI technologies</p>
             </div>
             
-            <div class="contact-content">
-                <div class="contact-info glass-morph">
-                    <h3 class="contact-title">Start the Conversation</h3>
-                    <p class="contact-description">
-                        Whether you have a groundbreaking idea, need creative problem-solving, 
-                        or want to collaborate on something extraordinary, I'd love to hear from you. 
-                        Let's transform concepts into captivating digital experiences.
-                    </p>
-                    
-                    <div class="contact-methods">
-                        <div class="contact-method hover-lift">
-                            <div class="contact-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                    <polyline points="22,6 12,13 2,6"></polyline>
+            <div class="skills-content">
+                <!-- Interactive Skill Categories -->
+                <div class="skills-grid">
+                    <!-- Machine Learning & AI -->
+                    <div class="skill-category cursor-interactive" data-category="ml">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="3"/>
+                                    <path d="m8 16 4-4 4 4"/>
+                                    <path d="m16 8-4 4-4-4"/>
                                 </svg>
                             </div>
-                            <div class="contact-details">
-                                <h4>Email</h4>
-                                <a href="mailto:alex@creative-dev.studio">alex@creative-dev.studio</a>
+                            <h3>Machine Learning & AI</h3>
+                            <div class="proficiency-indicator">
+                                <div class="proficiency-bar" data-level="95"></div>
                             </div>
                         </div>
-                        
-                        <div class="contact-method hover-lift">
-                            <div class="contact-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
-                                </svg>
+                        <div class="skills-list">
+                            <div class="skill-item" data-proficiency="95">
+                                <span class="skill-name">Python/Scikit-learn</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="95"></div>
+                                </div>
                             </div>
-                            <div class="contact-details">
-                                <h4>Phone</h4>
-                                <a href="tel:+1555123456">+1 (555) 123-456</a>
+                            <div class="skill-item" data-proficiency="90">
+                                <span class="skill-name">TensorFlow/Keras</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="90"></div>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="contact-method hover-lift">
-                            <div class="contact-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
+                            <div class="skill-item" data-proficiency="88">
+                                <span class="skill-name">PyTorch</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="88"></div>
+                                </div>
                             </div>
-                            <div class="contact-details">
-                                <h4>Location</h4>
-                                <span>San Francisco, CA</span>
+                            <div class="skill-item" data-proficiency="85">
+                                <span class="skill-name">XGBoost/LightGBM</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="85"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="social-links">
-                        <a href="#" class="social-link orbit-hover" aria-label="GitHub Profile">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"></path>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link orbit-hover" aria-label="LinkedIn Profile">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"></path>
-                                <rect x="2" y="9" width="4" height="12"></rect>
-                                <circle cx="4" cy="4" r="2"></circle>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link orbit-hover" aria-label="Dribbble Profile">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"></path>
-                            </svg>
-                        </a>
+
+                    <!-- Data Engineering -->
+                    <div class="skill-category cursor-interactive" data-category="engineering">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                    <polyline points="10,9 9,9 8,9"/>
+                                </svg>
+                            </div>
+                            <h3>Data Engineering</h3>
+                            <div class="proficiency-indicator">
+                                <div class="proficiency-bar" data-level="92"></div>
+                            </div>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-item" data-proficiency="95">
+                                <span class="skill-name">SQL/PostgreSQL</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="95"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-proficiency="90">
+                                <span class="skill-name">Apache Spark</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-proficiency="88">
+                                <span class="skill-name">Apache Airflow</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="88"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-proficiency="85">
+                                <span class="skill-name">Kafka/Streaming</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="85"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cloud & MLOps -->
+                    <div class="skill-category cursor-interactive" data-category="cloud">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+                                </svg>
+                            </div>
+                            <h3>Cloud & MLOps</h3>
+                            <div class="proficiency-indicator">
+                                <div class="proficiency-bar" data-level="87"></div>
+                            </div>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-item" data-proficiency="90">
+                                <span class="skill-name">AWS/Azure</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-proficiency="85">
+                                <span class="skill-name">Docker/Kubernetes</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="85"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-proficiency="88">
+                                <span class="skill-name">MLflow/DVC</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="88"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-proficiency="82">
+                                <span class="skill-name">CI/CD Pipelines</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="82"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Visualization -->
+                    <div class="skill-category cursor-interactive" data-category="visualization">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 3v18h18"/>
+                                    <path d="m19 9-5 5-4-4-3 3"/>
+                                </svg>
+                            </div>
+                            <h3>Data Visualization</h3>
+                            <div class="proficiency-indicator">
+                                <div class="proficiency-bar" data-level="90"></div>
+                            </div>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-item" data-proficiency="95">
+                                <span class="skill-name">Matplotlib/Seaborn</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="95"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-proficiency="88">
+                                <span class="skill-name">Plotly/Dash</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="88"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-proficiency="85">
+                                <span class="skill-name">Tableau/Power BI</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="85"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-proficiency="80">
+                                <span class="skill-name">D3.js</span>
+                                <div class="skill-viz">
+                                    <div class="skill-progress" data-width="80"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <form class="contact-form glass-morph" aria-label="Contact form">
-                    <div class="form-floating">
+                <!-- Interactive Skill Network Visualization -->
+                <div class="skill-network-container">
+                    <h3>Technology Ecosystem</h3>
+                    <div class="network-viz">
+                        <canvas id="skills-network" class="skills-network-canvas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section with Interactive Form -->
+    <section id="contact" class="contact-section">
+        <!-- Background with Data Particles -->
+        <div class="contact-bg">
+            <canvas id="contact-particles" class="contact-particles-canvas"></canvas>
+        </div>
+        
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title split-reveal">Let's Collaborate</h2>
+                <p class="section-subtitle">Ready to turn your data challenges into competitive advantages</p>
+            </div>
+            
+            <div class="contact-content">
+                <!-- Contact Information with Interactive Elements -->
+                <div class="contact-info">
+                    <div class="contact-intro">
+                        <h3>Transform Data Into Insights</h3>
+                        <p>
+                            Whether you're looking to implement ML solutions, optimize data pipelines, 
+                            or build predictive analytics systems, I'm here to help turn your data 
+                            vision into reality.
+                        </p>
+                    </div>
+                    
+                    <!-- Contact Methods with Hover Effects -->
+                    <div class="contact-methods">
+                        <div class="contact-method cursor-interactive" data-method="email">
+                            <div class="method-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div class="method-details">
+                                <h4>Email</h4>
+                                <a href="mailto:elena.chen@datasci.ai">elena.chen@datasci.ai</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method cursor-interactive" data-method="linkedin">
+                            <div class="method-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                    <rect x="2" y="9" width="4" height="12"/>
+                                    <circle cx="4" cy="4" r="2"/>
+                                </svg>
+                            </div>
+                            <div class="method-details">
+                                <h4>LinkedIn</h4>
+                                <a href="https://linkedin.com/in/elenachen-datasci">linkedin.com/in/elenachen-datasci</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method cursor-interactive" data-method="github">
+                            <div class="method-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                </svg>
+                            </div>
+                            <div class="method-details">
+                                <h4>GitHub</h4>
+                                <a href="https://github.com/elenachen-datasci">github.com/elenachen-datasci</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method cursor-interactive" data-method="location">
+                            <div class="method-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div class="method-details">
+                                <h4>Location</h4>
+                                <span>San Francisco Bay Area</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Availability Status -->
+                    <div class="availability-status">
+                        <div class="status-indicator available"></div>
+                        <span>Available for new projects</span>
+                    </div>
+                </div>
+                
+                <!-- Interactive Contact Form -->
+                <form class="contact-form" aria-label="Contact form">
+                    <div class="form-header">
+                        <h3>Start a Project</h3>
+                        <p>Tell me about your data challenge</p>
+                    </div>
+                    
+                    <div class="form-grid">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required aria-describedby="name-error">
-                            <span class="form-line"></span>
-                            <span class="error-message" id="name-error"></span>
+                            <input type="text" id="name" name="name" required>
+                            <div class="input-line"></div>
                         </div>
                         
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required aria-describedby="email-error">
-                            <span class="form-line"></span>
-                            <span class="error-message" id="email-error"></span>
+                            <input type="email" id="email" name="email" required>
+                            <div class="input-line"></div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required aria-describedby="subject-error">
-                            <span class="form-line"></span>
-                            <span class="error-message" id="subject-error"></span>
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company">
+                            <div class="input-line"></div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required aria-describedby="message-error"></textarea>
-                            <span class="form-line"></span>
-                            <span class="error-message" id="message-error"></span>
+                            <label for="project-type">Project Type</label>
+                            <select id="project-type" name="project-type" required>
+                                <option value="">Select project type</option>
+                                <option value="machine-learning">Machine Learning</option>
+                                <option value="data-engineering">Data Engineering</option>
+                                <option value="data-visualization">Data Visualization</option>
+                                <option value="analytics">Analytics & BI</option>
+                                <option value="consulting">Consulting</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="input-line"></div>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary btn-full morphing-btn">
-                            <span class="btn-text">Send Message</span>
-                            <span class="btn-loading" aria-hidden="true">Sending...</span>
-                            <div class="btn-ripple"></div>
-                        </button>
+                        <div class="form-group form-group-full">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" name="message" rows="5" required 
+                                placeholder="Describe your data challenge, current setup, and desired outcomes..."></textarea>
+                            <div class="input-line"></div>
+                        </div>
+                        
+                        <div class="form-group form-group-full">
+                            <button type="submit" class="btn btn-primary submit-btn">
+                                <span class="btn-text">Send Project Inquiry</span>
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"/>
+                                    <polygon points="22,2 15,22 11,13 2,9 22,2"/>
+                                </svg>
+                                <div class="btn-loading">
+                                    <div class="loading-spinner"></div>
+                                </div>
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer with Data Visualization -->
     <footer class="footer">
         <div class="footer-pattern">
             <svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.6" />
-                        <stop offset="50%" style="stop-color:#764ba2;stop-opacity:0.4" />
-                        <stop offset="100%" style="stop-color:#f093fb;stop-opacity:0.6" />
+                        <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:0.6"/>
+                        <stop offset="50%" style="stop-color:#7c3aed;stop-opacity:0.4"/>
+                        <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0.6"/>
                     </linearGradient>
                 </defs>
-                <rect width="100%" height="100%" fill="url(#footerGradient)" />
-                <circle cx="20" cy="10" r="3" fill="rgba(255,255,255,0.3)"/>
-                <circle cx="50" cy="10" r="2" fill="rgba(255,255,255,0.2)"/>
-                <circle cx="80" cy="10" r="4" fill="rgba(255,255,255,0.1)"/>
+                <rect width="100%" height="100%" fill="url(#footerGradient)"/>
+                <!-- Animated data points -->
+                <circle class="footer-dot dot-1" cx="20" cy="10" r="1" fill="rgba(255,255,255,0.8)"/>
+                <circle class="footer-dot dot-2" cx="50" cy="10" r="1.5" fill="rgba(255,255,255,0.6)"/>
+                <circle class="footer-dot dot-3" cx="80" cy="10" r="1" fill="rgba(255,255,255,0.7)"/>
             </svg>
         </div>
+        
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2024 Alex Rivera. Crafted with passion and precision.</p>
-                <p>Built with ❤️ using HTML5, CSS3, JavaScript & GSAP</p>
+                <div class="footer-text">
+                    <p>&copy; 2024 Elena Chen. Transforming data into intelligence.</p>
+                    <p>Built with passion for data science and cutting-edge web technologies</p>
+                </div>
+                
+                <!-- Mini Data Visualization -->
+                <div class="footer-viz">
+                    <div class="mini-chart">
+                        <div class="chart-bar" style="height: 60%"></div>
+                        <div class="chart-bar" style="height: 80%"></div>
+                        <div class="chart-bar" style="height: 45%"></div>
+                        <div class="chart-bar" style="height: 90%"></div>
+                        <div class="chart-bar" style="height: 70%"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MorphSVGPlugin.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

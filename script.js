@@ -1,91 +1,88 @@
 /**
- * ETHEREAL PORTFOLIO - Advanced Animation System
+ * DATA SCIENCE PORTFOLIO - Advanced Interactive System
  * 
- * Performance-optimized for 120fps displays with advanced GSAP ScrollTrigger animations,
- * particle systems, neural network visualizations, and device-specific optimizations.
+ * Performance-optimized for 120fps with data science focused interactions
+ * Neural network visualizations, interactive charts, cursor effects
+ * Device-specific optimizations for data analysis portfolio
  * 
- * Author: Alex Rivera
- * Technologies: GSAP 3.12+, ScrollTrigger, Canvas API, WebGL optimization
+ * Author: Elena Chen - Data Scientist & AI Engineer
+ * Technologies: Canvas API, Web Animations, Performance APIs
  */
 
-// ===== PERFORMANCE & ANIMATION GLOBALS =====
-gsap.registerPlugin(ScrollTrigger, TextPlugin);
-
-// Global animation state and performance tracking
-const ANIMATION_STATE = {
+// ===== PERFORMANCE & DEVICE DETECTION GLOBALS =====
+const PORTFOLIO_STATE = {
     isReducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
     isHighRefreshRate: window.screen.refreshRate > 60 || false,
     isMobile: window.innerWidth <= 768,
     isTablet: window.innerWidth <= 1024 && window.innerWidth > 768,
     devicePixelRatio: window.devicePixelRatio || 1,
     isMenuOpen: false,
-    particleSystem: null,
-    neuralNetwork: null
+    cursorX: 0,
+    cursorY: 0,
+    neuralNetwork: null,
+    heroChart: null,
+    skillsNetwork: null,
+    contactParticles: null,
+    aboutChart: null
 };
 
 // Performance-optimized animation durations for 120fps
 const DURATIONS = {
-    instant: 0.08,
-    fast: 0.16,
-    normal: 0.24,
-    slow: 0.48,
-    elastic: 0.6
+    instant: 80,    // 0.08s
+    fast: 160,      // 0.16s
+    normal: 240,    // 0.24s
+    slow: 480,      // 0.48s
+    elastic: 800    // 0.8s
 };
 
-// Hardware-accelerated easing curves
-const EASINGS = {
-    outExpo: "power4.out",
-    outBack: "back.out(1.7)",
-    outElastic: "elastic.out(1, 0.3)",
-    outQuart: "power3.out",
-    inOutQuart: "power3.inOut"
+// Data science color palette
+const DATA_COLORS = {
+    primary: '#4f46e5',
+    purple: '#7c3aed',
+    amber: '#f59e0b',
+    cyan: '#06b6d4',
+    emerald: '#10b981',
+    orange: '#f97316',
+    neonBlue: '#00d4ff',
+    neonPink: '#ff006e',
+    neonGreen: '#39ff14'
 };
 
-// ===== PARTICLE SYSTEM CLASS =====
-class ParticleSystem {
-    constructor(container, options = {}) {
-        this.canvas = document.createElement('canvas');
-        this.ctx = this.canvas.getContext('2d');
-        this.container = container;
-        this.particles = [];
+// ===== NEURAL NETWORK BACKGROUND CLASS =====
+class NeuralNetworkBackground {
+    constructor(canvas, options = {}) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.nodes = [];
+        this.connections = [];
+        this.mouse = { x: 0, y: 0 };
         
         // Performance-optimized defaults
         this.options = {
-            count: ANIMATION_STATE.isMobile ? 30 : 50,
-            maxSpeed: 0.5,
-            connectionDistance: 120,
-            particleSize: ANIMATION_STATE.devicePixelRatio,
-            colors: ['#667eea', '#764ba2', '#f093fb', '#00d4ff'],
+            nodeCount: PORTFOLIO_STATE.isMobile ? 20 : 40,
+            connectionDistance: 150,
+            nodeSpeed: 0.3,
+            pulseSpeed: 0.02,
+            mouseInfluence: 100,
+            colors: [DATA_COLORS.primary, DATA_COLORS.purple, DATA_COLORS.cyan, DATA_COLORS.amber],
             ...options
         };
         
+        this.time = 0;
         this.init();
         this.bindEvents();
         this.animate();
     }
     
     init() {
-        // Set canvas size with device pixel ratio optimization
         this.resize();
-        this.container.appendChild(this.canvas);
-        
-        // Create particles with hardware acceleration in mind
-        for (let i = 0; i < this.options.count; i++) {
-            this.particles.push({
-                x: Math.random() * this.canvas.width,
-                y: Math.random() * this.canvas.height,
-                vx: (Math.random() - 0.5) * this.options.maxSpeed,
-                vy: (Math.random() - 0.5) * this.options.maxSpeed,
-                color: this.options.colors[Math.floor(Math.random() * this.options.colors.length)],
-                opacity: Math.random() * 0.5 + 0.2
-            });
-        }
+        this.createNodes();
     }
     
     resize() {
-        const rect = this.container.getBoundingClientRect();
-        // Optimize for high DPI displays while maintaining performance
-        const pixelRatio = Math.min(ANIMATION_STATE.devicePixelRatio, 2);
+        const rect = this.canvas.getBoundingClientRect();
+        // Optimize for high DPI displays while maintaining 120fps
+        const pixelRatio = Math.min(PORTFOLIO_STATE.devicePixelRatio, 2);
         
         this.canvas.width = rect.width * pixelRatio;
         this.canvas.height = rect.height * pixelRatio;
@@ -93,80 +90,161 @@ class ParticleSystem {
         this.canvas.style.height = rect.height + 'px';
         
         this.ctx.scale(pixelRatio, pixelRatio);
+        this.width = rect.width;
+        this.height = rect.height;
+    }
+    
+    createNodes() {
+        this.nodes = [];
+        this.connections = [];
+        
+        // Create nodes with neural network properties
+        for (let i = 0; i < this.options.nodeCount; i++) {
+            this.nodes.push({
+                x: Math.random() * this.width,
+                y: Math.random() * this.height,
+                vx: (Math.random() - 0.5) * this.options.nodeSpeed,
+                vy: (Math.random() - 0.5) * this.options.nodeSpeed,
+                radius: Math.random() * 3 + 2,
+                activation: Math.random(),
+                phase: Math.random() * Math.PI * 2,
+                color: this.options.colors[Math.floor(Math.random() * this.options.colors.length)],
+                pulseIntensity: Math.random() * 0.5 + 0.5
+            });
+        }
     }
     
     bindEvents() {
-        // Throttled resize for performance
+        // Throttled mouse tracking for cursor interaction
+        if (!PORTFOLIO_STATE.isMobile) {
+            this.canvas.addEventListener('mousemove', this.throttle((e) => {
+                const rect = this.canvas.getBoundingClientRect();
+                this.mouse.x = e.clientX - rect.left;
+                this.mouse.y = e.clientY - rect.top;
+            }, 16), { passive: true });
+        }
+        
+        // Optimized resize handler
         window.addEventListener('resize', this.throttle(() => {
             this.resize();
-        }, 16), { passive: true });
+            this.createNodes();
+        }, 250), { passive: true });
     }
     
     update() {
-        // Performance-optimized particle updates
-        this.particles.forEach(particle => {
-            particle.x += particle.vx;
-            particle.y += particle.vy;
-            
-            // Boundary collision with elastic bounce
-            if (particle.x < 0 || particle.x > this.canvas.width / ANIMATION_STATE.devicePixelRatio) {
-                particle.vx *= -1;
+        this.time += this.options.pulseSpeed;
+        
+        // Update nodes with mouse interaction and neural activation
+        this.nodes.forEach((node, i) => {
+            // Mouse influence on desktop
+            if (!PORTFOLIO_STATE.isMobile) {
+                const dx = this.mouse.x - node.x;
+                const dy = this.mouse.y - node.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < this.options.mouseInfluence) {
+                    const force = (this.options.mouseInfluence - distance) / this.options.mouseInfluence;
+                    node.vx += (dx / distance) * force * 0.01;
+                    node.vy += (dy / distance) * force * 0.01;
+                    node.activation = Math.min(1, node.activation + force * 0.1);
+                }
             }
-            if (particle.y < 0 || particle.y > this.canvas.height / ANIMATION_STATE.devicePixelRatio) {
-                particle.vy *= -1;
-            }
             
-            // Keep particles in bounds
-            particle.x = Math.max(0, Math.min(this.canvas.width / ANIMATION_STATE.devicePixelRatio, particle.x));
-            particle.y = Math.max(0, Math.min(this.canvas.height / ANIMATION_STATE.devicePixelRatio, particle.y));
+            // Neural activation with sine wave
+            node.activation = Math.max(0.1, node.activation * 0.99);
+            node.activation += (Math.sin(this.time + node.phase) + 1) * 0.02;
+            
+            // Update position
+            node.x += node.vx;
+            node.y += node.vy;
+            
+            // Boundary wrapping
+            if (node.x < 0) node.x = this.width;
+            if (node.x > this.width) node.x = 0;
+            if (node.y < 0) node.y = this.height;
+            if (node.y > this.height) node.y = 0;
+            
+            // Velocity damping
+            node.vx *= 0.99;
+            node.vy *= 0.99;
         });
+        
+        // Update connections
+        this.updateConnections();
     }
     
-    draw() {
-        // Clear with optimized alpha blending
-        this.ctx.fillStyle = 'rgba(15, 15, 35, 0.05)';
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    updateConnections() {
+        this.connections = [];
         
-        // Draw connections first (behind particles)
-        this.drawConnections();
-        
-        // Draw particles with hardware acceleration hints
-        this.particles.forEach(particle => {
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, this.options.particleSize, 0, Math.PI * 2);
-            this.ctx.fillStyle = particle.color + Math.floor(particle.opacity * 255).toString(16).padStart(2, '0');
-            this.ctx.fill();
-        });
-    }
-    
-    drawConnections() {
-        // Optimized connection drawing with distance culling
-        for (let i = 0; i < this.particles.length; i++) {
-            for (let j = i + 1; j < this.particles.length; j++) {
-                const dx = this.particles[i].x - this.particles[j].x;
-                const dy = this.particles[i].y - this.particles[j].y;
+        // Create connections between nearby nodes
+        for (let i = 0; i < this.nodes.length; i++) {
+            for (let j = i + 1; j < this.nodes.length; j++) {
+                const dx = this.nodes[i].x - this.nodes[j].x;
+                const dy = this.nodes[i].y - this.nodes[j].y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
                 if (distance < this.options.connectionDistance) {
-                    const opacity = (1 - distance / this.options.connectionDistance) * 0.3;
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
-                    this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
-                    this.ctx.strokeStyle = `rgba(102, 126, 234, ${opacity})`;
-                    this.ctx.lineWidth = 1;
-                    this.ctx.stroke();
+                    this.connections.push({
+                        from: i,
+                        to: j,
+                        strength: (this.options.connectionDistance - distance) / this.options.connectionDistance,
+                        activation: (this.nodes[i].activation + this.nodes[j].activation) / 2
+                    });
                 }
             }
         }
     }
     
+    draw() {
+        // Clear with subtle trail effect for performance
+        this.ctx.fillStyle = 'rgba(15, 15, 30, 0.05)';
+        this.ctx.fillRect(0, 0, this.width, this.height);
+        
+        // Draw connections with neural activation
+        this.connections.forEach(connection => {
+            const fromNode = this.nodes[connection.from];
+            const toNode = this.nodes[connection.to];
+            
+            const opacity = connection.strength * connection.activation * 0.3;
+            
+            this.ctx.beginPath();
+            this.ctx.moveTo(fromNode.x, fromNode.y);
+            this.ctx.lineTo(toNode.x, toNode.y);
+            this.ctx.strokeStyle = `rgba(79, 70, 229, ${opacity})`;
+            this.ctx.lineWidth = connection.strength * 2;
+            this.ctx.stroke();
+        });
+        
+        // Draw nodes with activation-based sizing
+        this.nodes.forEach(node => {
+            const size = node.radius * (0.5 + node.activation * 0.5);
+            const glowSize = size * (1 + node.activation);
+            
+            // Glow effect
+            const gradient = this.ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glowSize);
+            gradient.addColorStop(0, `${node.color}aa`);
+            gradient.addColorStop(1, `${node.color}00`);
+            
+            this.ctx.beginPath();
+            this.ctx.arc(node.x, node.y, glowSize, 0, Math.PI * 2);
+            this.ctx.fillStyle = gradient;
+            this.ctx.fill();
+            
+            // Core node
+            this.ctx.beginPath();
+            this.ctx.arc(node.x, node.y, size, 0, Math.PI * 2);
+            this.ctx.fillStyle = `${node.color}${Math.floor(node.activation * 255).toString(16).padStart(2, '0')}`;
+            this.ctx.fill();
+        });
+    }
+    
     animate() {
-        if (!ANIMATION_STATE.isReducedMotion) {
+        if (!PORTFOLIO_STATE.isReducedMotion) {
             this.update();
             this.draw();
         }
         
-        // Use requestAnimationFrame for smooth 120fps when available
+        // Optimized for 120fps
         requestAnimationFrame(() => this.animate());
     }
     
@@ -185,25 +263,284 @@ class ParticleSystem {
     }
 }
 
-// ===== NEURAL NETWORK VISUALIZATION CLASS =====
-class NeuralNetworkCanvas {
+// ===== INTERACTIVE DATA CHART CLASS =====
+class InteractiveChart {
+    constructor(canvas, chartType = 'line', options = {}) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.chartType = chartType;
+        this.data = [];
+        this.animationProgress = 0;
+        this.mouse = { x: -1, y: -1 };
+        
+        this.options = {
+            animated: true,
+            responsive: true,
+            colors: [DATA_COLORS.primary, DATA_COLORS.cyan, DATA_COLORS.amber, DATA_COLORS.emerald],
+            gridLines: true,
+            ...options
+        };
+        
+        this.init();
+        this.bindEvents();
+        this.generateData();
+        this.animate();
+    }
+    
+    init() {
+        this.resize();
+    }
+    
+    resize() {
+        const rect = this.canvas.getBoundingClientRect();
+        const pixelRatio = Math.min(PORTFOLIO_STATE.devicePixelRatio, 2);
+        
+        this.canvas.width = rect.width * pixelRatio;
+        this.canvas.height = rect.height * pixelRatio;
+        this.canvas.style.width = rect.width + 'px';
+        this.canvas.style.height = rect.height + 'px';
+        
+        this.ctx.scale(pixelRatio, pixelRatio);
+        this.width = rect.width;
+        this.height = rect.height;
+    }
+    
+    bindEvents() {
+        if (!PORTFOLIO_STATE.isMobile) {
+            this.canvas.addEventListener('mousemove', (e) => {
+                const rect = this.canvas.getBoundingClientRect();
+                this.mouse.x = e.clientX - rect.left;
+                this.mouse.y = e.clientY - rect.top;
+            }, { passive: true });
+            
+            this.canvas.addEventListener('mouseleave', () => {
+                this.mouse.x = -1;
+                this.mouse.y = -1;
+            }, { passive: true });
+        }
+    }
+    
+    generateData() {
+        const dataCount = 20;
+        
+        switch (this.chartType) {
+            case 'prediction':
+                this.data = this.generatePredictionData(dataCount);
+                break;
+            case 'sentiment':
+                this.data = this.generateSentimentData(dataCount);
+                break;
+            case 'detection':
+                this.data = this.generateDetectionData(dataCount);
+                break;
+            case 'timeseries':
+                this.data = this.generateTimeSeriesData(dataCount);
+                break;
+            default:
+                this.data = this.generateLineData(dataCount);
+        }
+    }
+    
+    generatePredictionData(count) {
+        const data = [];
+        for (let i = 0; i < count; i++) {
+            const confidence = 0.7 + Math.random() * 0.3;
+            data.push({
+                x: i / (count - 1),
+                y: confidence,
+                category: Math.random() > 0.5 ? 'churn' : 'retain',
+                confidence: confidence
+            });
+        }
+        return data;
+    }
+    
+    generateSentimentData(count) {
+        const sentiments = ['positive', 'neutral', 'negative'];
+        const data = [];
+        for (let i = 0; i < count; i++) {
+            data.push({
+                x: i / (count - 1),
+                y: Math.random(),
+                sentiment: sentiments[Math.floor(Math.random() * sentiments.length)],
+                score: (Math.random() - 0.5) * 2
+            });
+        }
+        return data;
+    }
+    
+    generateDetectionData(count) {
+        const data = [];
+        for (let i = 0; i < count; i++) {
+            const accuracy = 0.85 + Math.random() * 0.15;
+            data.push({
+                x: i / (count - 1),
+                y: accuracy,
+                defects: Math.floor(Math.random() * 5),
+                accuracy: accuracy
+            });
+        }
+        return data;
+    }
+    
+    generateTimeSeriesData(count) {
+        const data = [];
+        let trend = 0.5;
+        for (let i = 0; i < count; i++) {
+            trend += (Math.random() - 0.5) * 0.1;
+            trend = Math.max(0.1, Math.min(0.9, trend));
+            data.push({
+                x: i / (count - 1),
+                y: trend,
+                timestamp: Date.now() - (count - i) * 86400000,
+                value: trend * 1000
+            });
+        }
+        return data;
+    }
+    
+    generateLineData(count) {
+        const data = [];
+        for (let i = 0; i < count; i++) {
+            data.push({
+                x: i / (count - 1),
+                y: Math.random(),
+                value: Math.random() * 100
+            });
+        }
+        return data;
+    }
+    
+    drawGrid() {
+        if (!this.options.gridLines) return;
+        
+        this.ctx.strokeStyle = 'rgba(79, 70, 229, 0.1)';
+        this.ctx.lineWidth = 1;
+        
+        // Vertical grid lines
+        for (let i = 0; i <= 10; i++) {
+            const x = (this.width * 0.9) * (i / 10) + this.width * 0.05;
+            this.ctx.beginPath();
+            this.ctx.moveTo(x, this.height * 0.05);
+            this.ctx.lineTo(x, this.height * 0.95);
+            this.ctx.stroke();
+        }
+        
+        // Horizontal grid lines
+        for (let i = 0; i <= 10; i++) {
+            const y = (this.height * 0.9) * (i / 10) + this.height * 0.05;
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.width * 0.05, y);
+            this.ctx.lineTo(this.width * 0.95, y);
+            this.ctx.stroke();
+        }
+    }
+    
+    drawChart() {
+        this.ctx.clearRect(0, 0, this.width, this.height);
+        this.drawGrid();
+        
+        if (this.data.length === 0) return;
+        
+        const padding = this.width * 0.05;
+        const chartWidth = this.width - padding * 2;
+        const chartHeight = this.height - padding * 2;
+        
+        // Draw data line
+        this.ctx.strokeStyle = DATA_COLORS.primary;
+        this.ctx.lineWidth = 3;
+        this.ctx.beginPath();
+        
+        this.data.forEach((point, i) => {
+            const x = padding + point.x * chartWidth * this.animationProgress;
+            const y = padding + (1 - point.y) * chartHeight;
+            
+            if (i === 0) {
+                this.ctx.moveTo(x, y);
+            } else {
+                this.ctx.lineTo(x, y);
+            }
+        });
+        
+        this.ctx.stroke();
+        
+        // Draw data points with hover effects
+        this.data.forEach((point, i) => {
+            if (i > this.data.length * this.animationProgress) return;
+            
+            const x = padding + point.x * chartWidth;
+            const y = padding + (1 - point.y) * chartHeight;
+            
+            // Check mouse proximity for interaction
+            const isHovered = !PORTFOLIO_STATE.isMobile && 
+                Math.abs(this.mouse.x - x) < 20 && 
+                Math.abs(this.mouse.y - y) < 20;
+            
+            const radius = isHovered ? 8 : 4;
+            const alpha = isHovered ? 1 : 0.8;
+            
+            // Glow effect for hovered points
+            if (isHovered) {
+                const gradient = this.ctx.createRadialGradient(x, y, 0, x, y, radius * 3);
+                gradient.addColorStop(0, `${DATA_COLORS.amber}66`);
+                gradient.addColorStop(1, `${DATA_COLORS.amber}00`);
+                
+                this.ctx.beginPath();
+                this.ctx.arc(x, y, radius * 3, 0, Math.PI * 2);
+                this.ctx.fillStyle = gradient;
+                this.ctx.fill();
+            }
+            
+            // Data point
+            this.ctx.beginPath();
+            this.ctx.arc(x, y, radius, 0, Math.PI * 2);
+            this.ctx.fillStyle = `${DATA_COLORS.cyan}${Math.floor(alpha * 255).toString(16)}`;
+            this.ctx.fill();
+        });
+    }
+    
+    animate() {
+        if (!PORTFOLIO_STATE.isReducedMotion && this.options.animated) {
+            // Smooth animation progress
+            this.animationProgress = Math.min(1, this.animationProgress + 0.02);
+            
+            // Add some data variation for live effect
+            if (this.animationProgress >= 1 && Math.random() > 0.98) {
+                this.data.forEach(point => {
+                    point.y += (Math.random() - 0.5) * 0.02;
+                    point.y = Math.max(0, Math.min(1, point.y));
+                });
+            }
+        }
+        
+        this.drawChart();
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+// ===== SKILLS NETWORK VISUALIZATION =====
+class SkillsNetworkViz {
     constructor(canvas, options = {}) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.nodes = [];
         this.connections = [];
+        this.mouse = { x: 0, y: 0 };
         
         this.options = {
-            nodeCount: ANIMATION_STATE.isMobile ? 15 : 25,
-            layers: ANIMATION_STATE.isMobile ? 3 : 4,
-            pulseSpeed: 0.02,
-            connectionOpacity: 0.3,
-            nodeSize: 3,
+            nodeCount: 12,
+            centerNode: true,
+            skills: [
+                'Python', 'Machine Learning', 'TensorFlow', 'PyTorch',
+                'SQL', 'Apache Spark', 'AWS', 'Docker',
+                'Pandas', 'Plotly', 'Jupyter', 'Git'
+            ],
             ...options
         };
         
         this.time = 0;
         this.init();
+        this.bindEvents();
         this.animate();
     }
     
@@ -214,12 +551,14 @@ class NeuralNetworkCanvas {
     
     resize() {
         const rect = this.canvas.getBoundingClientRect();
-        const pixelRatio = Math.min(ANIMATION_STATE.devicePixelRatio, 2);
+        const pixelRatio = Math.min(PORTFOLIO_STATE.devicePixelRatio, 2);
         
         this.canvas.width = rect.width * pixelRatio;
         this.canvas.height = rect.height * pixelRatio;
-        this.ctx.scale(pixelRatio, pixelRatio);
+        this.canvas.style.width = rect.width + 'px';
+        this.canvas.style.height = rect.height + 'px';
         
+        this.ctx.scale(pixelRatio, pixelRatio);
         this.width = rect.width;
         this.height = rect.height;
     }
@@ -228,523 +567,629 @@ class NeuralNetworkCanvas {
         this.nodes = [];
         this.connections = [];
         
-        const layerWidth = this.width / (this.options.layers + 1);
-        const nodesPerLayer = Math.ceil(this.options.nodeCount / this.options.layers);
+        const centerX = this.width / 2;
+        const centerY = this.height / 2;
+        const radius = Math.min(this.width, this.height) * 0.3;
         
-        // Create nodes in layers
-        for (let layer = 0; layer < this.options.layers; layer++) {
-            const x = layerWidth * (layer + 1);
-            const layerHeight = this.height / (nodesPerLayer + 1);
+        // Create center node (Elena)
+        if (this.options.centerNode) {
+            this.nodes.push({
+                x: centerX,
+                y: centerY,
+                radius: 30,
+                label: 'Elena',
+                type: 'center',
+                color: DATA_COLORS.amber,
+                connections: [],
+                strength: 1
+            });
+        }
+        
+        // Create skill nodes in a circle
+        for (let i = 0; i < this.options.skills.length; i++) {
+            const angle = (i / this.options.skills.length) * Math.PI * 2;
+            const nodeRadius = radius + (Math.random() - 0.5) * 40;
             
-            for (let node = 0; node < nodesPerLayer; node++) {
-                this.nodes.push({
-                    x: x + (Math.random() - 0.5) * 50,
-                    y: layerHeight * (node + 1) + (Math.random() - 0.5) * 30,
-                    layer: layer,
-                    activation: Math.random(),
-                    pulsePhase: Math.random() * Math.PI * 2
+            this.nodes.push({
+                x: centerX + Math.cos(angle) * nodeRadius,
+                y: centerY + Math.sin(angle) * nodeRadius,
+                radius: 15 + Math.random() * 10,
+                label: this.options.skills[i],
+                type: 'skill',
+                color: this.options.colors[i % this.options.colors.length] || DATA_COLORS.primary,
+                originalX: centerX + Math.cos(angle) * nodeRadius,
+                originalY: centerY + Math.sin(angle) * nodeRadius,
+                angle: angle,
+                connections: [],
+                strength: 0.5 + Math.random() * 0.5
+            });
+        }
+        
+        // Create connections
+        this.createConnections();
+    }
+    
+    createConnections() {
+        // Connect center to all skills
+        if (this.options.centerNode) {
+            for (let i = 1; i < this.nodes.length; i++) {
+                this.connections.push({
+                    from: 0,
+                    to: i,
+                    strength: this.nodes[i].strength,
+                    type: 'primary'
                 });
             }
         }
         
-        // Create connections between adjacent layers
-        this.nodes.forEach((node, i) => {
-            this.nodes.forEach((otherNode, j) => {
-                if (i !== j && Math.abs(node.layer - otherNode.layer) === 1) {
-                    this.connections.push({
-                        from: i,
-                        to: j,
-                        weight: Math.random(),
-                        pulse: 0
-                    });
-                }
-            });
+        // Connect related skills
+        const skillConnections = [
+            ['Python', 'Machine Learning'], ['Python', 'TensorFlow'], ['Python', 'PyTorch'],
+            ['Machine Learning', 'TensorFlow'], ['Machine Learning', 'PyTorch'],
+            ['SQL', 'Apache Spark'], ['AWS', 'Docker'], ['Python', 'Pandas'],
+            ['Pandas', 'Plotly'], ['Python', 'Jupyter']
+        ];
+        
+        skillConnections.forEach(([skill1, skill2]) => {
+            const node1 = this.nodes.find(n => n.label === skill1);
+            const node2 = this.nodes.find(n => n.label === skill2);
+            
+            if (node1 && node2) {
+                const index1 = this.nodes.indexOf(node1);
+                const index2 = this.nodes.indexOf(node2);
+                
+                this.connections.push({
+                    from: index1,
+                    to: index2,
+                    strength: 0.3,
+                    type: 'secondary'
+                });
+            }
         });
     }
     
+    bindEvents() {
+        if (!PORTFOLIO_STATE.isMobile) {
+            this.canvas.addEventListener('mousemove', (e) => {
+                const rect = this.canvas.getBoundingClientRect();
+                this.mouse.x = e.clientX - rect.left;
+                this.mouse.y = e.clientY - rect.top;
+            }, { passive: true });
+        }
+    }
+    
     update() {
-        this.time += this.options.pulseSpeed;
+        this.time += 0.02;
         
-        // Update node activations with sine wave
-        this.nodes.forEach(node => {
-            node.activation = (Math.sin(this.time + node.pulsePhase) + 1) / 2;
-        });
-        
-        // Update connection pulses
-        this.connections.forEach(connection => {
-            connection.pulse = Math.sin(this.time * 2 + connection.weight * 10) * 0.5 + 0.5;
+        // Update node positions with mouse interaction
+        this.nodes.forEach((node, i) => {
+            if (node.type === 'center') return;
+            
+            // Mouse attraction for desktop
+            if (!PORTFOLIO_STATE.isMobile) {
+                const dx = this.mouse.x - node.x;
+                const dy = this.mouse.y - node.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    const force = (100 - distance) / 100 * 0.02;
+                    node.x += dx * force;
+                    node.y += dy * force;
+                }
+            }
+            
+            // Return to original position
+            const returnForce = 0.03;
+            node.x += (node.originalX - node.x) * returnForce;
+            node.y += (node.originalY - node.y) * returnForce;
+            
+            // Add subtle floating animation
+            node.x += Math.sin(this.time + node.angle) * 0.5;
+            node.y += Math.cos(this.time + node.angle * 1.1) * 0.3;
         });
     }
     
     draw() {
-        // Clear canvas with fade effect
-        this.ctx.fillStyle = 'rgba(15, 15, 35, 0.1)';
-        this.ctx.fillRect(0, 0, this.width, this.height);
+        this.ctx.clearRect(0, 0, this.width, this.height);
         
         // Draw connections
         this.connections.forEach(connection => {
             const fromNode = this.nodes[connection.from];
             const toNode = this.nodes[connection.to];
             
+            const opacity = connection.type === 'primary' ? 0.6 : 0.3;
+            const width = connection.type === 'primary' ? 2 : 1;
+            
             this.ctx.beginPath();
             this.ctx.moveTo(fromNode.x, fromNode.y);
             this.ctx.lineTo(toNode.x, toNode.y);
-            
-            const opacity = this.options.connectionOpacity * connection.pulse;
-            this.ctx.strokeStyle = `rgba(102, 126, 234, ${opacity})`;
-            this.ctx.lineWidth = 1;
+            this.ctx.strokeStyle = `rgba(79, 70, 229, ${opacity * connection.strength})`;
+            this.ctx.lineWidth = width;
             this.ctx.stroke();
         });
         
         // Draw nodes
         this.nodes.forEach(node => {
+            // Glow effect
+            const gradient = this.ctx.createRadialGradient(
+                node.x, node.y, 0,
+                node.x, node.y, node.radius * 2
+            );
+            gradient.addColorStop(0, `${node.color}66`);
+            gradient.addColorStop(1, `${node.color}00`);
+            
             this.ctx.beginPath();
-            this.ctx.arc(node.x, node.y, this.options.nodeSize + node.activation * 2, 0, Math.PI * 2);
-            
-            const intensity = node.activation;
-            this.ctx.fillStyle = `rgba(${102 + intensity * 50}, ${126 + intensity * 50}, 234, ${0.6 + intensity * 0.4})`;
+            this.ctx.arc(node.x, node.y, node.radius * 2, 0, Math.PI * 2);
+            this.ctx.fillStyle = gradient;
             this.ctx.fill();
             
-            // Add glow effect
-            this.ctx.shadowColor = '#667eea';
-            this.ctx.shadowBlur = 10 * intensity;
+            // Node circle
+            this.ctx.beginPath();
+            this.ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+            this.ctx.fillStyle = node.color;
             this.ctx.fill();
-            this.ctx.shadowBlur = 0;
+            
+            // Node label
+            this.ctx.fillStyle = 'white';
+            this.ctx.font = `${node.type === 'center' ? '14px' : '10px'} Inter, sans-serif`;
+            this.ctx.textAlign = 'center';
+            this.ctx.textBaseline = 'middle';
+            this.ctx.fillText(node.label, node.x, node.y);
         });
     }
     
     animate() {
-        if (!ANIMATION_STATE.isReducedMotion) {
+        if (!PORTFOLIO_STATE.isReducedMotion) {
             this.update();
-            this.draw();
         }
+        this.draw();
         requestAnimationFrame(() => this.animate());
     }
 }
 
-// ===== MAGNETIC INTERACTION SYSTEM =====
-class MagneticElements {
+// ===== PARTICLE SYSTEM FOR CONTACT SECTION =====
+class ContactParticleSystem {
+    constructor(canvas, options = {}) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.particles = [];
+        this.mouse = { x: 0, y: 0 };
+        
+        this.options = {
+            count: PORTFOLIO_STATE.isMobile ? 30 : 60,
+            speed: 0.5,
+            connectionDistance: 120,
+            mouseInfluence: 150,
+            colors: [DATA_COLORS.primary, DATA_COLORS.cyan, DATA_COLORS.amber],
+            ...options
+        };
+        
+        this.init();
+        this.bindEvents();
+        this.animate();
+    }
+    
+    init() {
+        this.resize();
+        this.createParticles();
+    }
+    
+    resize() {
+        const rect = this.canvas.getBoundingClientRect();
+        const pixelRatio = Math.min(PORTFOLIO_STATE.devicePixelRatio, 2);
+        
+        this.canvas.width = rect.width * pixelRatio;
+        this.canvas.height = rect.height * pixelRatio;
+        this.canvas.style.width = rect.width + 'px';
+        this.canvas.style.height = rect.height + 'px';
+        
+        this.ctx.scale(pixelRatio, pixelRatio);
+        this.width = rect.width;
+        this.height = rect.height;
+    }
+    
+    createParticles() {
+        this.particles = [];
+        
+        for (let i = 0; i < this.options.count; i++) {
+            this.particles.push({
+                x: Math.random() * this.width,
+                y: Math.random() * this.height,
+                vx: (Math.random() - 0.5) * this.options.speed,
+                vy: (Math.random() - 0.5) * this.options.speed,
+                radius: Math.random() * 2 + 1,
+                color: this.options.colors[Math.floor(Math.random() * this.options.colors.length)],
+                opacity: Math.random() * 0.5 + 0.3,
+                originalVx: (Math.random() - 0.5) * this.options.speed,
+                originalVy: (Math.random() - 0.5) * this.options.speed
+            });
+        }
+    }
+    
+    bindEvents() {
+        if (!PORTFOLIO_STATE.isMobile) {
+            this.canvas.addEventListener('mousemove', (e) => {
+                const rect = this.canvas.getBoundingClientRect();
+                this.mouse.x = e.clientX - rect.left;
+                this.mouse.y = e.clientY - rect.top;
+            }, { passive: true });
+        }
+    }
+    
+    update() {
+        this.particles.forEach(particle => {
+            // Mouse interaction
+            if (!PORTFOLIO_STATE.isMobile) {
+                const dx = this.mouse.x - particle.x;
+                const dy = this.mouse.y - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < this.options.mouseInfluence) {
+                    const force = (this.options.mouseInfluence - distance) / this.options.mouseInfluence;
+                    particle.vx += (dx / distance) * force * 0.005;
+                    particle.vy += (dy / distance) * force * 0.005;
+                }
+            }
+            
+            // Update position
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+            
+            // Boundary conditions
+            if (particle.x < 0 || particle.x > this.width) {
+                particle.vx *= -1;
+                particle.x = Math.max(0, Math.min(this.width, particle.x));
+            }
+            if (particle.y < 0 || particle.y > this.height) {
+                particle.vy *= -1;
+                particle.y = Math.max(0, Math.min(this.height, particle.y));
+            }
+            
+            // Velocity damping
+            particle.vx += (particle.originalVx - particle.vx) * 0.01;
+            particle.vy += (particle.originalVy - particle.vy) * 0.01;
+        });
+    }
+    
+    draw() {
+        this.ctx.clearRect(0, 0, this.width, this.height);
+        
+        // Draw connections
+        for (let i = 0; i < this.particles.length; i++) {
+            for (let j = i + 1; j < this.particles.length; j++) {
+                const dx = this.particles[i].x - this.particles[j].x;
+                const dy = this.particles[i].y - this.particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < this.options.connectionDistance) {
+                    const opacity = (1 - distance / this.options.connectionDistance) * 0.2;
+                    
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+                    this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+                    this.ctx.strokeStyle = `rgba(79, 70, 229, ${opacity})`;
+                    this.ctx.lineWidth = 1;
+                    this.ctx.stroke();
+                }
+            }
+        }
+        
+        // Draw particles
+        this.particles.forEach(particle => {
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+            this.ctx.fillStyle = `${particle.color}${Math.floor(particle.opacity * 255).toString(16)}`;
+            this.ctx.fill();
+        });
+    }
+    
+    animate() {
+        if (!PORTFOLIO_STATE.isReducedMotion) {
+            this.update();
+        }
+        this.draw();
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+// ===== CUSTOM CURSOR SYSTEM =====
+class CustomCursor {
     constructor() {
-        this.elements = document.querySelectorAll('.magnetic-btn, .magnetic-project');
+        this.cursor = document.getElementById('cursor-follower');
+        this.cursorX = 0;
+        this.cursorY = 0;
+        this.targetX = 0;
+        this.targetY = 0;
+        this.ease = 0.15;
+        
+        if (PORTFOLIO_STATE.isMobile || !this.cursor) return;
+        
+        this.init();
+        this.bindEvents();
+        this.animate();
+    }
+    
+    init() {
+        // Hide default cursor
+        document.body.style.cursor = 'none';
+        
+        // Show custom cursor
+        this.cursor.style.opacity = '1';
+    }
+    
+    bindEvents() {
+        // Track mouse movement with throttling for performance
+        document.addEventListener('mousemove', this.throttle((e) => {
+            this.targetX = e.clientX;
+            this.targetY = e.clientY;
+            
+            // Update global state for other components
+            PORTFOLIO_STATE.cursorX = e.clientX;
+            PORTFOLIO_STATE.cursorY = e.clientY;
+        }, 16), { passive: true });
+        
+        // Cursor interaction states
+        document.addEventListener('mousedown', () => {
+            this.cursor.style.transform = `translate(${this.cursorX - 10}px, ${this.cursorY - 10}px) scale(0.8)`;
+        }, { passive: true });
+        
+        document.addEventListener('mouseup', () => {
+            this.cursor.style.transform = `translate(${this.cursorX - 10}px, ${this.cursorY - 10}px) scale(1)`;
+        }, { passive: true });
+        
+        // Interactive element hover effects
+        document.querySelectorAll('.cursor-interactive').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                this.cursor.style.transform = `translate(${this.cursorX - 10}px, ${this.cursorY - 10}px) scale(1.5)`;
+                this.cursor.style.backgroundColor = DATA_COLORS.amber;
+            }, { passive: true });
+            
+            element.addEventListener('mouseleave', () => {
+                this.cursor.style.transform = `translate(${this.cursorX - 10}px, ${this.cursorY - 10}px) scale(1)`;
+                this.cursor.style.backgroundColor = '';
+            }, { passive: true });
+        });
+    }
+    
+    animate() {
+        // Smooth cursor following with easing
+        this.cursorX += (this.targetX - this.cursorX) * this.ease;
+        this.cursorY += (this.targetY - this.cursorY) * this.ease;
+        
+        // Update cursor position
+        this.cursor.style.transform = `translate(${this.cursorX - 10}px, ${this.cursorY - 10}px)`;
+        
+        requestAnimationFrame(() => this.animate());
+    }
+    
+    // Performance utility
+    throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    }
+}
+
+// ===== TYPEWRITER EFFECT =====
+class TypewriterEffect {
+    constructor(element, words, options = {}) {
+        this.element = element;
+        this.words = words;
+        this.options = {
+            typeSpeed: 100,
+            deleteSpeed: 50,
+            delayBetweenWords: 2000,
+            loop: true,
+            ...options
+        };
+        
+        this.currentWordIndex = 0;
+        this.currentCharIndex = 0;
+        this.isDeleting = false;
+        this.isWaiting = false;
+        
         this.init();
     }
     
     init() {
-        this.elements.forEach(element => {
-            // Optimize mouse events with passive listeners
-            element.addEventListener('mouseenter', (e) => this.onMouseEnter(e), { passive: true });
-            element.addEventListener('mousemove', (e) => this.onMouseMove(e), { passive: true });
-            element.addEventListener('mouseleave', (e) => this.onMouseLeave(e), { passive: true });
-        });
+        this.type();
     }
     
-    onMouseEnter(e) {
-        const element = e.currentTarget;
-        // Pre-optimize for transform by setting will-change
-        element.style.willChange = 'transform';
-    }
-    
-    onMouseMove(e) {
-        if (ANIMATION_STATE.isMobile) return; // Disable on mobile for performance
+    type() {
+        if (PORTFOLIO_STATE.isReducedMotion) {
+            this.element.textContent = this.words[0];
+            return;
+        }
         
-        const element = e.currentTarget;
-        const rect = element.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
+        const currentWord = this.words[this.currentWordIndex];
         
-        // Calculate magnetic pull strength (max 20px)
-        const deltaX = (e.clientX - centerX) * 0.1;
-        const deltaY = (e.clientY - centerY) * 0.1;
-        
-        // Use GSAP for hardware-accelerated transforms
-        gsap.to(element, {
-            x: deltaX,
-            y: deltaY,
-            duration: DURATIONS.fast,
-            ease: EASINGS.outQuart
-        });
-    }
-    
-    onMouseLeave(e) {
-        const element = e.currentTarget;
-        
-        // Return to original position
-        gsap.to(element, {
-            x: 0,
-            y: 0,
-            duration: DURATIONS.normal,
-            ease: EASINGS.outBack,
-            onComplete: () => {
-                // Remove will-change after animation
-                element.style.willChange = 'auto';
+        if (this.isDeleting) {
+            // Delete characters
+            this.element.textContent = currentWord.substring(0, this.currentCharIndex - 1);
+            this.currentCharIndex--;
+            
+            if (this.currentCharIndex === 0) {
+                this.isDeleting = false;
+                this.currentWordIndex = (this.currentWordIndex + 1) % this.words.length;
+                setTimeout(() => this.type(), 500);
+                return;
             }
-        });
+            
+            setTimeout(() => this.type(), this.options.deleteSpeed);
+        } else {
+            // Type characters
+            this.element.textContent = currentWord.substring(0, this.currentCharIndex + 1);
+            this.currentCharIndex++;
+            
+            if (this.currentCharIndex === currentWord.length) {
+                setTimeout(() => {
+                    this.isDeleting = true;
+                    this.type();
+                }, this.options.delayBetweenWords);
+                return;
+            }
+            
+            setTimeout(() => this.type(), this.options.typeSpeed);
+        }
     }
 }
 
-// ===== DEVICE-SPECIFIC ANIMATION SYSTEM =====
-class DeviceOptimizedAnimations {
+// ===== SCROLL ANIMATIONS =====
+class ScrollAnimations {
     constructor() {
-        this.setupMatchMedia();
-        this.initializeAnimations();
+        this.initIntersectionObserver();
+        this.initScrollEffects();
     }
     
-    setupMatchMedia() {
-        // GSAP MatchMedia for device-specific optimizations
-        const mm = gsap.matchMedia();
+    initIntersectionObserver() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
         
-        // Mobile optimizations (reduced complexity)
-        mm.add("(max-width: 768px)", () => {
-            ANIMATION_STATE.isMobile = true;
-            this.initMobileAnimations();
-        });
-        
-        // Tablet optimizations
-        mm.add("(min-width: 769px) and (max-width: 1024px)", () => {
-            ANIMATION_STATE.isTablet = true;
-            this.initTabletAnimations();
-        });
-        
-        // Desktop optimizations (full complexity)
-        mm.add("(min-width: 1025px)", () => {
-            this.initDesktopAnimations();
-        });
-        
-        // High refresh rate optimizations
-        mm.add("(min-resolution: 120dpi)", () => {
-            ANIMATION_STATE.isHighRefreshRate = true;
-            this.enableHighRefreshRateOptimizations();
-        });
-        
-        // Reduced motion support
-        mm.add("(prefers-reduced-motion: reduce)", () => {
-            ANIMATION_STATE.isReducedMotion = true;
-            this.disableComplexAnimations();
-        });
-    }
-    
-    initMobileAnimations() {
-        // Simplified animations for mobile performance
-        gsap.set(['.floating-shape', '.floating-element'], { display: 'none' });
-        
-        // Reduce particle count
-        if (ANIMATION_STATE.particleSystem) {
-            ANIMATION_STATE.particleSystem.options.count = 15;
-        }
-    }
-    
-    initTabletAnimations() {
-        // Moderate complexity for tablets
-        gsap.set(['.floating-shape', '.floating-element'], { display: 'block' });
-    }
-    
-    initDesktopAnimations() {
-        // Full animation complexity for desktop
-        this.initAdvancedParallax();
-        this.initComplexGeometryAnimations();
-    }
-    
-    enableHighRefreshRateOptimizations() {
-        // Optimize for 120fps+ displays
-        gsap.ticker.fps(120);
-    }
-    
-    disableComplexAnimations() {
-        // Disable complex animations for accessibility
-        gsap.set('*', { animation: 'none', transition: 'none' });
-    }
-    
-    initAdvancedParallax() {
-        // Multi-layer parallax with different speeds
-        gsap.utils.toArray('.floating-element').forEach((element, i) => {
-            gsap.to(element, {
-                y: (i + 1) * -100,
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 1 + i * 0.5 // Different speeds for each layer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.animateElement(entry.target);
                 }
             });
-        });
-    }
-    
-    initComplexGeometryAnimations() {
-        // Advanced floating geometry animations
-        gsap.utils.toArray('.floating-shape').forEach((shape, i) => {
-            const tl = gsap.timeline({ repeat: -1, yoyo: true });
-            
-            tl.to(shape, {
-                rotation: 360,
-                scale: 1.2,
-                duration: 3 + i,
-                ease: EASINGS.inOutQuart
-            });
-        });
-    }
-    
-    initializeAnimations() {
-        this.initHeroAnimations();
-        this.initScrollTriggerAnimations();
-        this.initTextAnimations();
-        this.initMorphingAnimations();
-    }
-    
-    // ===== HERO SECTION ANIMATIONS =====
-    initHeroAnimations() {
-        const tl = gsap.timeline({ delay: 0.5 });
+        }, observerOptions);
         
-        // Typewriter effect for hero subtitle
-        if (document.querySelector('.typewriter-text')) {
-            gsap.to('.typewriter-text', {
-                text: "Creative Developer & Digital Artist",
-                duration: 2,
-                ease: "none",
-                delay: 1.5
-            });
-            
-            gsap.fromTo('.typewriter-text', 
-                { opacity: 0 },
-                { opacity: 1, duration: 0.5, delay: 1.5 }
-            );
+        // Observe elements for animation
+        document.querySelectorAll('.reveal-text, .split-reveal, .metric-item, .skill-category, .project-card').forEach(el => {
+            observer.observe(el);
+        });
+    }
+    
+    animateElement(element) {
+        if (PORTFOLIO_STATE.isReducedMotion) {
+            element.style.opacity = '1';
+            element.style.transform = 'none';
+            return;
         }
         
-        // Glitch effect trigger
-        this.initGlitchEffect();
+        // Split text animation for titles
+        if (element.classList.contains('split-reveal')) {
+            this.splitTextReveal(element);
+        }
         
-        // Staggered hero content animation
-        tl.fromTo(['.hero-greeting', '.hero-name', '.hero-description'], 
-            { 
-                opacity: 0, 
-                y: 50,
-                // Hardware acceleration optimization
-                force3D: true
-            },
-            { 
-                opacity: 1, 
-                y: 0,
-                duration: DURATIONS.normal,
-                ease: EASINGS.outExpo,
-                stagger: 0.2
+        // Fade up animation for other elements
+        else {
+            element.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0) scale(1)';
+        }
+        
+        // Animate skill progress bars
+        if (element.classList.contains('skill-category')) {
+            this.animateSkillBars(element);
+        }
+        
+        // Animate metric counters
+        if (element.classList.contains('metric-item')) {
+            this.animateCounter(element);
+        }
+    }
+    
+    splitTextReveal(element) {
+        const text = element.textContent;
+        const words = text.split(' ');
+        
+        element.innerHTML = words.map(word => 
+            `<span style="display: inline-block; opacity: 0; transform: translateY(20px);">${word}</span>`
+        ).join(' ');
+        
+        const spans = element.querySelectorAll('span');
+        spans.forEach((span, i) => {
+            setTimeout(() => {
+                span.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                span.style.opacity = '1';
+                span.style.transform = 'translateY(0)';
+            }, i * 100);
+        });
+    }
+    
+    animateSkillBars(categoryElement) {
+        const progressBars = categoryElement.querySelectorAll('.skill-progress, .proficiency-bar');
+        
+        progressBars.forEach((bar, i) => {
+            setTimeout(() => {
+                const width = bar.dataset.width || bar.dataset.level;
+                bar.style.transition = 'transform 1s cubic-bezier(0.16, 1, 0.3, 1)';
+                bar.style.transform = `scaleX(${width / 100})`;
+            }, i * 200);
+        });
+    }
+    
+    animateCounter(metricElement) {
+        const numberElement = metricElement.querySelector('.metric-number');
+        if (!numberElement) return;
+        
+        const target = parseInt(numberElement.dataset.target) || 0;
+        const duration = 2000;
+        const start = performance.now();
+        
+        const updateCounter = (currentTime) => {
+            const elapsed = currentTime - start;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(target * easeOut);
+            
+            numberElement.textContent = current;
+            
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
             }
-        )
-        .fromTo('.hero-buttons', 
-            { opacity: 0, scale: 0.8 },
-            { 
-                opacity: 1, 
-                scale: 1,
-                duration: DURATIONS.elastic,
-                ease: EASINGS.outBack
-            },
-            "-=0.3"
-        );
+        };
         
-        // Floating geometry entrance
-        gsap.fromTo('.geometry-svg', 
-            { opacity: 0, scale: 0.5, rotation: -180 },
-            { 
-                opacity: 1, 
-                scale: 1, 
-                rotation: 0,
-                duration: DURATIONS.elastic,
-                ease: EASINGS.outBack,
-                delay: 1
+        requestAnimationFrame(updateCounter);
+    }
+    
+    initScrollEffects() {
+        // Navbar scroll effect
+        let lastScrollY = 0;
+        const navbar = document.querySelector('.navbar');
+        
+        const handleScroll = this.throttle(() => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
             }
-        );
+            
+            lastScrollY = currentScrollY;
+        }, 16);
+        
+        window.addEventListener('scroll', handleScroll, { passive: true });
     }
     
-    initGlitchEffect() {
-        const glitchElement = document.querySelector('.glitch-text');
-        if (!glitchElement) return;
-        
-        // Trigger glitch effect periodically
-        setInterval(() => {
-            if (!ANIMATION_STATE.isReducedMotion) {
-                glitchElement.style.animation = 'none';
-                glitchElement.offsetHeight; // Trigger reflow
-                glitchElement.style.animation = 'glitch-1 0.3s ease-out';
+    // Performance utility
+    throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
             }
-        }, 8000);
-    }
-    
-    // ===== SCROLL TRIGGER ANIMATIONS =====
-    initScrollTriggerAnimations() {
-        // Section reveals with stagger
-        gsap.utils.toArray('.section-title').forEach(title => {
-            // Split text for character-by-character animation
-            const chars = title.textContent.split('');
-            title.innerHTML = chars.map(char => `<span class="char">${char}</span>`).join('');
-            
-            gsap.fromTo(title.querySelectorAll('.char'), 
-                { 
-                    opacity: 0, 
-                    y: 100,
-                    rotationX: -90,
-                    force3D: true
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    rotationX: 0,
-                    duration: DURATIONS.normal,
-                    ease: EASINGS.outBack,
-                    stagger: 0.05,
-                    scrollTrigger: {
-                        trigger: title,
-                        start: "top 85%",
-                        end: "bottom 15%",
-                        toggleActions: "play none none reverse"
-                    }
-                }
-            );
-        });
-        
-        // Project cards with magnetic reveal
-        gsap.utils.toArray('.project-card').forEach((card, i) => {
-            gsap.fromTo(card, 
-                { 
-                    opacity: 0, 
-                    y: 100,
-                    rotationY: -15,
-                    scale: 0.8,
-                    force3D: true
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    rotationY: 0,
-                    scale: 1,
-                    duration: DURATIONS.elastic,
-                    ease: EASINGS.outBack,
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 90%",
-                        end: "bottom 10%",
-                        toggleActions: "play none none reverse"
-                    },
-                    delay: i * 0.1
-                }
-            );
-        });
-        
-        // Stats counter animation
-        this.initStatsCounters();
-        
-        // Skill cards floating animation
-        this.initSkillCardsAnimation();
-    }
-    
-    initStatsCounters() {
-        gsap.utils.toArray('.stat-number').forEach(stat => {
-            const finalNumber = parseInt(stat.getAttribute('data-count'));
-            
-            ScrollTrigger.create({
-                trigger: stat,
-                start: "top 80%",
-                onEnter: () => {
-                    gsap.fromTo(stat, 
-                        { innerText: 0 },
-                        {
-                            innerText: finalNumber,
-                            duration: 2,
-                            ease: EASINGS.outExpo,
-                            snap: { innerText: 1 },
-                            onUpdate: function() {
-                                stat.innerText = Math.ceil(this.targets()[0].innerText);
-                            }
-                        }
-                    );
-                }
-            });
-        });
-    }
-    
-    initSkillCardsAnimation() {
-        gsap.utils.toArray('.floating-card').forEach((card, i) => {
-            // Continuous floating animation
-            gsap.to(card, {
-                y: "+=10",
-                duration: 2 + i * 0.5,
-                ease: "power1.inOut",
-                yoyo: true,
-                repeat: -1
-            });
-            
-            // Scroll-triggered reveal
-            gsap.fromTo(card, 
-                { opacity: 0, x: i % 2 === 0 ? -50 : 50 },
-                {
-                    opacity: 1,
-                    x: 0,
-                    duration: DURATIONS.normal,
-                    ease: EASINGS.outBack,
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse"
-                    }
-                }
-            );
-        });
-    }
-    
-    // ===== TEXT ANIMATIONS =====
-    initTextAnimations() {
-        // Reveal text animation for about section
-        gsap.utils.toArray('.reveal-text').forEach(text => {
-            gsap.fromTo(text, 
-                { opacity: 0, y: 30 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: DURATIONS.normal,
-                    ease: EASINGS.outExpo,
-                    scrollTrigger: {
-                        trigger: text,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse"
-                    }
-                }
-            );
-        });
-    }
-    
-    // ===== MORPHING ANIMATIONS =====
-    initMorphingAnimations() {
-        // Blob morphing animation
-        if (document.querySelector('.blob-path')) {
-            gsap.to('.blob-path', {
-                rotation: 360,
-                duration: 20,
-                ease: "none",
-                repeat: -1
-            });
-        }
-        
-        // Liquid morph backgrounds
-        gsap.utils.toArray('.stat-bg-morph').forEach(morph => {
-            gsap.to(morph, {
-                rotation: 360,
-                duration: 15,
-                ease: "none",
-                repeat: -1
-            });
-        });
-        
-        // Wave animation
-        if (document.querySelector('.wave-path')) {
-            gsap.to('.wave-path', {
-                morphSVG: "M0,80 C300,20 600,100 900,40 C1050,10 1200,70 1200,80 L1200,120 L0,120 Z",
-                duration: 4,
-                ease: "power1.inOut",
-                yoyo: true,
-                repeat: -1
-            });
-        }
+        };
     }
 }
 
-// ===== ENHANCED NAVIGATION SYSTEM =====
+// ===== NAVIGATION SYSTEM =====
 class NavigationSystem {
     constructor() {
         this.navbar = document.querySelector('.navbar');
@@ -756,69 +1201,51 @@ class NavigationSystem {
     }
     
     init() {
-        this.setupScrollEffects();
         this.setupMobileMenu();
-        this.setupActiveLinks();
         this.setupSmoothScrolling();
-    }
-    
-    setupScrollEffects() {
-        // Optimized scroll listener with throttling
-        let ticking = false;
-        
-        const updateNavbar = () => {
-            if (window.scrollY > 100) {
-                this.navbar.classList.add('scrolled');
-            } else {
-                this.navbar.classList.remove('scrolled');
-            }
-            ticking = false;
-        };
-        
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateNavbar);
-                ticking = true;
-            }
-        }, { passive: true });
+        this.setupActiveLinks();
     }
     
     setupMobileMenu() {
         if (!this.mobileToggle) return;
         
         this.mobileToggle.addEventListener('click', () => {
-            ANIMATION_STATE.isMenuOpen = !ANIMATION_STATE.isMenuOpen;
+            PORTFOLIO_STATE.isMenuOpen = !PORTFOLIO_STATE.isMenuOpen;
             
             this.mobileToggle.classList.toggle('active');
             this.navLinks.classList.toggle('active');
             
             // Prevent body scroll when menu is open
-            document.body.style.overflow = ANIMATION_STATE.isMenuOpen ? 'hidden' : '';
-            
-            // Animate menu items with stagger
-            if (ANIMATION_STATE.isMenuOpen) {
-                gsap.fromTo(this.navLinkItems, 
-                    { opacity: 0, y: 30 },
-                    { 
-                        opacity: 1, 
-                        y: 0, 
-                        duration: DURATIONS.normal, 
-                        ease: EASINGS.outBack,
-                        stagger: 0.1,
-                        delay: 0.2
-                    }
-                );
-            }
+            document.body.style.overflow = PORTFOLIO_STATE.isMenuOpen ? 'hidden' : '';
         });
         
         // Close menu when clicking nav links
         this.navLinkItems.forEach(link => {
             link.addEventListener('click', () => {
-                if (ANIMATION_STATE.isMobile) {
-                    ANIMATION_STATE.isMenuOpen = false;
+                if (PORTFOLIO_STATE.isMobile) {
+                    PORTFOLIO_STATE.isMenuOpen = false;
                     this.mobileToggle.classList.remove('active');
                     this.navLinks.classList.remove('active');
                     document.body.style.overflow = '';
+                }
+            });
+        });
+    }
+    
+    setupSmoothScrolling() {
+        // Enhanced smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                    
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
@@ -852,30 +1279,9 @@ class NavigationSystem {
             }
         });
     }
-    
-    setupSmoothScrolling() {
-        // Enhanced smooth scrolling with GSAP
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                const target = document.querySelector(anchor.getAttribute('href'));
-                if (target) {
-                    gsap.to(window, {
-                        scrollTo: {
-                            y: target,
-                            offsetY: 80
-                        },
-                        duration: DURATIONS.slow,
-                        ease: EASINGS.outExpo
-                    });
-                }
-            });
-        });
-    }
 }
 
-// ===== FORM ENHANCEMENT SYSTEM =====
+// ===== FORM SYSTEM =====
 class FormSystem {
     constructor() {
         this.contactForm = document.querySelector('.contact-form');
@@ -891,33 +1297,23 @@ class FormSystem {
     }
     
     setupFormAnimations() {
-        // Floating label effect
+        // Enhanced form field animations
         const formGroups = document.querySelectorAll('.form-group');
         
         formGroups.forEach(group => {
-            const input = group.querySelector('input, textarea');
+            const input = group.querySelector('input, textarea, select');
             const label = group.querySelector('label');
             
             if (input && label) {
                 input.addEventListener('focus', () => {
-                    gsap.to(label, {
-                        y: -10,
-                        scale: 0.85,
-                        color: '#667eea',
-                        duration: DURATIONS.fast,
-                        ease: EASINGS.outExpo
-                    });
+                    group.style.transform = 'translateY(-2px)';
+                    label.style.color = DATA_COLORS.primary;
                 });
                 
                 input.addEventListener('blur', () => {
                     if (!input.value) {
-                        gsap.to(label, {
-                            y: 0,
-                            scale: 1,
-                            color: '#e2e8f0',
-                            duration: DURATIONS.fast,
-                            ease: EASINGS.outExpo
-                        });
+                        group.style.transform = 'translateY(0)';
+                        label.style.color = '';
                     }
                 });
             }
@@ -925,7 +1321,7 @@ class FormSystem {
     }
     
     setupValidation() {
-        const inputs = this.contactForm.querySelectorAll('input, textarea');
+        const inputs = this.contactForm.querySelectorAll('input, textarea, select');
         
         inputs.forEach(input => {
             input.addEventListener('blur', () => this.validateField(input));
@@ -935,57 +1331,49 @@ class FormSystem {
     
     validateField(field) {
         const value = field.value.trim();
-        const errorElement = document.getElementById(field.name + '-error');
         let isValid = true;
         let errorMessage = '';
         
-        switch(field.type) {
-            case 'email':
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(value)) {
-                    isValid = false;
-                    errorMessage = 'Please enter a valid email address';
-                }
-                break;
-            case 'text':
-            case 'textarea':
-                if (value.length < 2) {
-                    isValid = false;
-                    errorMessage = `${field.name.charAt(0).toUpperCase() + field.name.slice(1)} must be at least 2 characters`;
-                }
-                break;
-        }
-        
-        if (value === '') {
+        // Basic validation
+        if (field.required && !value) {
             isValid = false;
-            errorMessage = `${field.name.charAt(0).toUpperCase() + field.name.slice(1)} is required`;
+            errorMessage = `${field.name} is required`;
+        } else if (field.type === 'email' && value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid email address';
+            }
         }
         
-        if (errorElement) {
-            errorElement.textContent = isValid ? '' : errorMessage;
-            
-            // Animate error message
-            if (!isValid) {
-                gsap.fromTo(errorElement, 
-                    { opacity: 0, y: -10 },
-                    { opacity: 1, y: 0, duration: DURATIONS.fast }
-                );
-            }
+        // Visual feedback
+        if (!isValid) {
+            field.style.borderColor = DATA_COLORS.neonPink;
+            this.showFieldError(field, errorMessage);
+        } else {
+            field.style.borderColor = DATA_COLORS.primary;
+            this.clearFieldError(field);
         }
         
         return isValid;
     }
     
+    showFieldError(field, message) {
+        // Create or update error message
+        let errorElement = field.parentNode.querySelector('.error-message');
+        if (!errorElement) {
+            errorElement = document.createElement('div');
+            errorElement.className = 'error-message';
+            field.parentNode.appendChild(errorElement);
+        }
+        errorElement.textContent = message;
+        errorElement.style.opacity = '1';
+    }
+    
     clearFieldError(field) {
-        const errorElement = document.getElementById(field.name + '-error');
-        if (errorElement && errorElement.textContent) {
-            gsap.to(errorElement, {
-                opacity: 0,
-                duration: DURATIONS.fast,
-                onComplete: () => {
-                    errorElement.textContent = '';
-                }
-            });
+        const errorElement = field.parentNode.querySelector('.error-message');
+        if (errorElement) {
+            errorElement.style.opacity = '0';
         }
     }
     
@@ -998,8 +1386,8 @@ class FormSystem {
     
     async handleFormSubmission(e) {
         const form = e.target;
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const inputs = form.querySelectorAll('input, textarea');
+        const submitBtn = form.querySelector('.submit-btn');
+        const inputs = form.querySelectorAll('input, textarea, select');
         
         // Validate all fields
         let isFormValid = true;
@@ -1014,37 +1402,30 @@ class FormSystem {
             return;
         }
         
-        // Show loading state with morphing animation
+        // Show loading state
         submitBtn.classList.add('loading');
-        gsap.to(submitBtn, {
-            scale: 0.95,
-            duration: DURATIONS.fast,
-            yoyo: true,
-            repeat: -1
-        });
+        submitBtn.disabled = true;
         
         try {
             // Simulate form submission
             await new Promise(resolve => setTimeout(resolve, 2000));
             
-            // Success animation
-            gsap.to(form, {
-                scale: 0.98,
-                duration: 0.1,
-                yoyo: true,
-                repeat: 1,
-                onComplete: () => {
-                    this.showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-                    form.reset();
-                }
+            // Success
+            this.showNotification('Thank you! Your message has been sent successfully.', 'success');
+            form.reset();
+            
+            // Reset form styles
+            inputs.forEach(input => {
+                input.style.borderColor = '';
+                const group = input.closest('.form-group');
+                if (group) group.style.transform = 'translateY(0)';
             });
             
         } catch (error) {
             this.showNotification('Something went wrong. Please try again later.', 'error');
         } finally {
             submitBtn.classList.remove('loading');
-            gsap.killTweensOf(submitBtn);
-            gsap.set(submitBtn, { scale: 1 });
+            submitBtn.disabled = false;
         }
     }
     
@@ -1060,7 +1441,7 @@ class FormSystem {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: ${type === 'success' ? '#48bb78' : type === 'error' ? '#f56565' : '#667eea'};
+            background: ${type === 'success' ? DATA_COLORS.emerald : type === 'error' ? DATA_COLORS.neonPink : DATA_COLORS.primary};
             color: white;
             padding: 1rem 1.5rem;
             border-radius: 12px;
@@ -1068,6 +1449,7 @@ class FormSystem {
             z-index: 10000;
             max-width: 400px;
             transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             backdrop-filter: blur(10px);
         `;
         notification.textContent = message;
@@ -1075,126 +1457,20 @@ class FormSystem {
         document.body.appendChild(notification);
         
         // Animate in
-        gsap.to(notification, {
-            x: 0,
-            duration: DURATIONS.normal,
-            ease: EASINGS.outBack
-        });
+        setTimeout(() => {
+            notification.style.transform = 'translateX(0)';
+        }, 100);
         
         // Auto remove
         setTimeout(() => {
-            gsap.to(notification, {
-                x: '100%',
-                duration: DURATIONS.normal,
-                ease: EASINGS.outExpo,
-                onComplete: () => notification.remove()
-            });
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => notification.remove(), 300);
         }, 5000);
     }
 }
 
-// ===== SCROLL PROGRESS INDICATOR =====
-class ScrollProgress {
-    constructor() {
-        this.createProgressBar();
-        this.bindEvents();
-    }
-    
-    createProgressBar() {
-        this.progressBar = document.createElement('div');
-        this.progressBar.className = 'scroll-progress';
-        this.progressBar.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
-            z-index: 9999;
-            transition: width 0.1s ease;
-            will-change: width;
-        `;
-        document.body.appendChild(this.progressBar);
-    }
-    
-    bindEvents() {
-        let ticking = false;
-        
-        const updateProgress = () => {
-            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            this.progressBar.style.width = Math.min(100, Math.max(0, scrolled)) + '%';
-            ticking = false;
-        };
-        
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateProgress);
-                ticking = true;
-            }
-        }, { passive: true });
-    }
-}
-
-// ===== PERFORMANCE MONITOR =====
-class PerformanceMonitor {
-    constructor() {
-        this.frameCount = 0;
-        this.lastTime = performance.now();
-        this.fps = 0;
-        
-        if (window.location.hash === '#debug') {
-            this.createDebugPanel();
-            this.startMonitoring();
-        }
-    }
-    
-    createDebugPanel() {
-        this.debugPanel = document.createElement('div');
-        this.debugPanel.style.cssText = `
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            font-family: monospace;
-            font-size: 12px;
-            z-index: 10000;
-        `;
-        document.body.appendChild(this.debugPanel);
-    }
-    
-    startMonitoring() {
-        const monitor = () => {
-            this.frameCount++;
-            const currentTime = performance.now();
-            
-            if (currentTime >= this.lastTime + 1000) {
-                this.fps = Math.round((this.frameCount * 1000) / (currentTime - this.lastTime));
-                this.frameCount = 0;
-                this.lastTime = currentTime;
-                
-                if (this.debugPanel) {
-                    this.debugPanel.innerHTML = `
-                        FPS: ${this.fps}<br>
-                        Device Pixel Ratio: ${ANIMATION_STATE.devicePixelRatio}<br>
-                        Mobile: ${ANIMATION_STATE.isMobile}<br>
-                        Reduced Motion: ${ANIMATION_STATE.isReducedMotion}<br>
-                        Particles: ${ANIMATION_STATE.particleSystem?.options.count || 0}
-                    `;
-                }
-            }
-            
-            requestAnimationFrame(monitor);
-        };
-        
-        monitor();
-    }
-}
-
-// ===== INITIALIZATION SYSTEM =====
-class PortfolioApp {
+// ===== MAIN APPLICATION CLASS =====
+class DataSciencePortfolio {
     constructor() {
         this.init();
     }
@@ -1207,63 +1483,100 @@ class PortfolioApp {
             });
         }
         
-        // Initialize performance monitoring
-        this.performanceMonitor = new PerformanceMonitor();
-        
         // Initialize core systems
         this.initializeCoreSystems();
         
-        // Initialize visual effects
-        this.initializeVisualEffects();
+        // Initialize visualizations
+        this.initializeVisualizations();
         
         // Initialize interaction systems
         this.initializeInteractionSystems();
         
-        // Setup resize handler
-        this.setupResizeHandler();
+        // Setup responsive handlers
+        this.setupResponsiveHandlers();
         
-        // Setup accessibility enhancements
+        // Setup accessibility
         this.setupAccessibility();
         
-        console.log('🎨 Ethereal Portfolio loaded successfully!');
+        console.log('%c🔬 Data Science Portfolio Loaded Successfully!', 'color: #4f46e5; font-size: 16px; font-weight: bold;');
+        console.log(`%c
+📊 PORTFOLIO ANALYTICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚡ Performance: 120fps optimized
+🧠 Neural Networks: Active
+📈 Interactive Charts: Loaded
+🖱️  Cursor Effects: ${!PORTFOLIO_STATE.isMobile ? 'Enabled' : 'Disabled (Mobile)'}
+📱 Device: ${PORTFOLIO_STATE.isMobile ? 'Mobile' : PORTFOLIO_STATE.isTablet ? 'Tablet' : 'Desktop'}
+🎨 Animations: ${PORTFOLIO_STATE.isReducedMotion ? 'Reduced' : 'Full'}
+
+Built with passion for data science ❤️
+        `, 'color: #06b6d4; font-size: 12px;');
     }
     
     initializeCoreSystems() {
-        // Device-optimized animations
-        this.deviceAnimations = new DeviceOptimizedAnimations();
-        
         // Navigation system
         this.navigation = new NavigationSystem();
+        
+        // Scroll animations
+        this.scrollAnimations = new ScrollAnimations();
         
         // Form system
         this.formSystem = new FormSystem();
         
-        // Scroll progress
-        this.scrollProgress = new ScrollProgress();
+        // Typewriter effect for hero
+        const typingElement = document.querySelector('.typing-text');
+        if (typingElement) {
+            const words = JSON.parse(typingElement.dataset.words || '["AI Engineer"]');
+            this.typewriter = new TypewriterEffect(typingElement, words);
+        }
     }
     
-    initializeVisualEffects() {
-        // Particle system
-        const particleContainer = document.getElementById('particle-canvas');
-        if (particleContainer && !ANIMATION_STATE.isReducedMotion) {
-            ANIMATION_STATE.particleSystem = new ParticleSystem(particleContainer);
+    initializeVisualizations() {
+        // Neural network background
+        const neuralCanvas = document.getElementById('neural-network-bg');
+        if (neuralCanvas && !PORTFOLIO_STATE.isReducedMotion) {
+            PORTFOLIO_STATE.neuralNetwork = new NeuralNetworkBackground(neuralCanvas);
         }
         
-        // Neural network visualization
-        const neuralCanvas = document.getElementById('neural-network');
-        if (neuralCanvas && !ANIMATION_STATE.isReducedMotion) {
-            ANIMATION_STATE.neuralNetwork = new NeuralNetworkCanvas(neuralCanvas);
+        // Hero chart
+        const heroChart = document.getElementById('hero-chart');
+        if (heroChart) {
+            PORTFOLIO_STATE.heroChart = new InteractiveChart(heroChart, 'line');
+        }
+        
+        // About stats chart
+        const aboutStatsChart = document.getElementById('about-stats-chart');
+        if (aboutStatsChart) {
+            PORTFOLIO_STATE.aboutChart = new InteractiveChart(aboutStatsChart, 'doughnut');
+        }
+        
+        // Project charts
+        document.querySelectorAll('.project-chart').forEach(canvas => {
+            const chartType = canvas.dataset.chart;
+            new InteractiveChart(canvas, chartType);
+        });
+        
+        // Skills network
+        const skillsNetwork = document.getElementById('skills-network');
+        if (skillsNetwork && !PORTFOLIO_STATE.isReducedMotion) {
+            PORTFOLIO_STATE.skillsNetwork = new SkillsNetworkViz(skillsNetwork);
+        }
+        
+        // Contact particles
+        const contactParticles = document.getElementById('contact-particles');
+        if (contactParticles && !PORTFOLIO_STATE.isReducedMotion) {
+            PORTFOLIO_STATE.contactParticles = new ContactParticleSystem(contactParticles);
         }
     }
     
     initializeInteractionSystems() {
-        // Magnetic elements
-        if (!ANIMATION_STATE.isMobile) {
-            this.magneticSystem = new MagneticElements();
+        // Custom cursor for desktop
+        if (!PORTFOLIO_STATE.isMobile) {
+            this.customCursor = new CustomCursor();
         }
     }
     
-    setupResizeHandler() {
+    setupResponsiveHandlers() {
         // Debounced resize handler for performance
         let resizeTimeout;
         
@@ -1271,47 +1584,57 @@ class PortfolioApp {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
                 // Update device state
-                ANIMATION_STATE.isMobile = window.innerWidth <= 768;
-                ANIMATION_STATE.isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
+                const oldIsMobile = PORTFOLIO_STATE.isMobile;
+                PORTFOLIO_STATE.isMobile = window.innerWidth <= 768;
+                PORTFOLIO_STATE.isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
                 
-                // Refresh ScrollTrigger
-                ScrollTrigger.refresh();
+                // Reinitialize systems if device type changed
+                if (oldIsMobile !== PORTFOLIO_STATE.isMobile) {
+                    this.handleDeviceChange();
+                }
                 
-                // Resize canvas elements
-                if (ANIMATION_STATE.particleSystem) {
-                    ANIMATION_STATE.particleSystem.resize();
-                }
-                if (ANIMATION_STATE.neuralNetwork) {
-                    ANIMATION_STATE.neuralNetwork.resize();
-                }
+                // Resize visualizations
+                this.resizeVisualizations();
             }, 250);
         }, { passive: true });
+    }
+    
+    handleDeviceChange() {
+        // Reinitialize cursor system
+        if (!PORTFOLIO_STATE.isMobile && !this.customCursor) {
+            this.customCursor = new CustomCursor();
+        } else if (PORTFOLIO_STATE.isMobile && this.customCursor) {
+            document.body.style.cursor = 'auto';
+        }
+    }
+    
+    resizeVisualizations() {
+        // Resize all canvas-based visualizations
+        [
+            PORTFOLIO_STATE.neuralNetwork,
+            PORTFOLIO_STATE.heroChart,
+            PORTFOLIO_STATE.aboutChart,
+            PORTFOLIO_STATE.skillsNetwork,
+            PORTFOLIO_STATE.contactParticles
+        ].forEach(viz => {
+            if (viz && viz.resize) {
+                viz.resize();
+            }
+        });
     }
     
     setupAccessibility() {
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             // Escape key closes mobile menu
-            if (e.key === 'Escape' && ANIMATION_STATE.isMenuOpen) {
+            if (e.key === 'Escape' && PORTFOLIO_STATE.isMenuOpen) {
                 const mobileToggle = document.querySelector('.mobile-menu-toggle');
                 const navLinks = document.querySelector('.nav-links');
                 
-                ANIMATION_STATE.isMenuOpen = false;
+                PORTFOLIO_STATE.isMenuOpen = false;
                 mobileToggle?.classList.remove('active');
                 navLinks?.classList.remove('active');
                 document.body.style.overflow = '';
-            }
-        });
-        
-        // Focus management for mobile menu
-        document.addEventListener('focusin', (e) => {
-            if (ANIMATION_STATE.isMenuOpen) {
-                const navLinks = document.querySelector('.nav-links');
-                const focusableElements = navLinks?.querySelectorAll('a, button');
-                
-                if (navLinks && !navLinks.contains(e.target)) {
-                    focusableElements?.[0]?.focus();
-                }
             }
         });
         
@@ -1343,40 +1666,18 @@ class PortfolioApp {
 }
 
 // ===== INITIALIZE APPLICATION =====
-// Initialize the portfolio application
-const portfolioApp = new PortfolioApp();
-
-// ===== CONSOLE EASTER EGG =====
-console.log(`
-🎨 ETHEREAL PORTFOLIO v2.0
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⚡ Performance: 120fps optimized
-🎮 Hardware: GPU accelerated  
-📱 Responsive: Device adaptive
-🎭 Animations: GSAP powered
-🧠 AI: Neural network visualized
-✨ Effects: Particle systems
-🎪 Interactive: Magnetic elements
-
-Built with passion by Alex Rivera
-Want to see the magic behind the curtain?
-Check out the source code! 🔍
-
-Performance Stats:
-- Device Pixel Ratio: ${ANIMATION_STATE.devicePixelRatio}
-- Mobile: ${ANIMATION_STATE.isMobile}
-- Reduced Motion: ${ANIMATION_STATE.isReducedMotion}
-- High Refresh Rate: ${ANIMATION_STATE.isHighRefreshRate}
-`);
+// Initialize the data science portfolio application
+const dataSciencePortfolio = new DataSciencePortfolio();
 
 // Export for potential module usage
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
-        PortfolioApp,
-        ParticleSystem,
-        NeuralNetworkCanvas,
-        MagneticElements,
-        DeviceOptimizedAnimations,
-        ANIMATION_STATE
+        DataSciencePortfolio,
+        NeuralNetworkBackground,
+        InteractiveChart,
+        SkillsNetworkViz,
+        ContactParticleSystem,
+        CustomCursor,
+        PORTFOLIO_STATE
     };
 } 
