@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "sample-case-study",
+    "title": "Sample Case Study",
+    "summary": "Placeholder summary",
+    "problem": "Placeholder problem",
+    "approach": "Placeholder approach",
+    "impact": "Placeholder impact",
+    "tech": ["Python", "SQL", "Pandas", "Plotly"],
+    "metrics": { "kpiA": 123, "kpiB": 45, "kpiC": 6 },
+    "images": ["/projects/sample-1.png", "/projects/sample-2.png"],
+    "links": { "repo": "https://github.com/[your-handle]/sample", "demo": "https://example.com" }
+  },
+  {
+    "slug": "analytics-automation",
+    "title": "Analytics Automation",
+    "summary": "Placeholder summary",
+    "problem": "Placeholder problem",
+    "approach": "Placeholder approach",
+    "impact": "Placeholder impact",
+    "tech": ["Airflow", "dbt", "BigQuery"],
+    "metrics": { "runtime": 75, "cost": 20 },
+    "images": ["/projects/automation.png"],
+    "links": { "repo": "https://github.com/[your-handle]/automation" }
+  }
+]

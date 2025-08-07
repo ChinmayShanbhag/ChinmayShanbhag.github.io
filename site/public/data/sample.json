@@ -1,0 +1,5 @@
+[
+  { "category": "A", "date": "2024-01-01", "value": 12 },
+  { "category": "A", "date": "2024-01-02", "value": 19 },
+  { "category": "B", "date": "2024-01-01", "value": 8 }
+]

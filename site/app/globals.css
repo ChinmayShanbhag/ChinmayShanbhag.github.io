@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: 255 255 255;
+  --foreground: 23 23 23;
+}
+
+.dark {
+  --background: 10 10 10;
+  --foreground: 237 237 237;
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+body {
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+}
