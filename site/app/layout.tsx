@@ -14,22 +14,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "[Your Name] • Data Analyst",
-  description: "[Tagline]",
+  title: "Chinmay Shanbhag • Data Analyst",
+  description:
+    "Analyst specializing in KPI dashboards, financial modelling, automation, and data storytelling with SQL, Tableau, and Power BI",
   metadataBase: undefined,
   openGraph: {
-    title: "[Your Name] • Data Analyst",
-    description: "[Tagline]",
+    title: "Chinmay Shanbhag • Data Analyst",
+    description:
+      "Analyst specializing in KPI dashboards, financial modelling, automation, and data storytelling with SQL, Tableau, and Power BI",
     url: undefined,
-    siteName: "[Your Name] Portfolio",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "[Your Name]" }],
+    siteName: "Chinmay Shanbhag Portfolio",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Chinmay Shanbhag" }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "[Your Name] • Data Analyst",
-    description: "[Tagline]",
+    title: "Chinmay Shanbhag • Data Analyst",
+    description:
+      "Analyst specializing in KPI dashboards, financial modelling, automation, and data storytelling with SQL, Tableau, and Power BI",
     images: ["/og.png"],
   },
 };

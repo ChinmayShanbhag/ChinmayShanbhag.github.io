@@ -1,13 +1,14 @@
 export const siteConfig = {
-  siteName: "[Your Name]",
-  siteDescription: "[Tagline]",
-  baseUrl: "https://[your-domain]",
-  city: "[City]",
-  email: "[Email]",
+  siteName: "Chinmay Shanbhag",
+  siteDescription:
+    "Analyst specializing in KPI dashboards, financial modelling, automation, and data storytelling with SQL, Tableau, and Power BI",
+  baseUrl: "https://chinmayshanbhag.github.io",
+  city: "Bloomington, Indiana",
+  email: "chinmay.shanbhag@gmail.com",
   social: {
-    linkedin: "https://www.linkedin.com/in/[your-handle]",
-    github: "https://github.com/[your-handle]",
-    twitter: "https://x.com/[your-handle]",
+    linkedin: "https://www.linkedin.com/in/chinmay-shanbhag",
+    github: "https://github.com/ChinmayShanbhag",
+    twitter: "",
   },
   analyticsId: "",
 };
