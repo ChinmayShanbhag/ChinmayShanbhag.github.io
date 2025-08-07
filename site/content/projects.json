@@ -1,26 +1,50 @@
 [
   {
-    "slug": "sample-case-study",
-    "title": "Sample Case Study",
-    "summary": "Placeholder summary",
-    "problem": "Placeholder problem",
-    "approach": "Placeholder approach",
-    "impact": "Placeholder impact",
-    "tech": ["Python", "SQL", "Pandas", "Plotly"],
-    "metrics": { "kpiA": 123, "kpiB": 45, "kpiC": 6 },
-    "images": ["/projects/sample-1.png", "/projects/sample-2.png"],
-    "links": { "repo": "https://github.com/[your-handle]/sample", "demo": "https://example.com" }
+    "slug": "pricewatch-forecasting-observability",
+    "title": "PriceWatch: Forecasting and Observability",
+    "summary": "Python service that scrapes Amazon prices, forecasts trends, and streams metrics to Grafana.",
+    "problem": "Teams lacked a reliable view of multi-category Amazon price movements and near real-time insights.",
+    "approach": "Built a modular pipeline to fetch product prices, forecast trends, and push metrics to Grafana; deployed on GCP Cloud Run.",
+    "impact": "Monitored 1K products and handled ~500K daily requests, enabling timely pricing reviews and alerts.",
+    "tech": ["Python", "GCP Cloud Run", "BigQuery", "Grafana", "Pandas", "Forecasting"],
+    "metrics": { "products": 1000, "dailyRequests": 500000 },
+    "images": [],
+    "links": { "repo": "https://github.com/ChinmayShanbhag/pricewatch-lgtp" }
   },
   {
-    "slug": "analytics-automation",
-    "title": "Analytics Automation",
-    "summary": "Placeholder summary",
-    "problem": "Placeholder problem",
-    "approach": "Placeholder approach",
-    "impact": "Placeholder impact",
-    "tech": ["Airflow", "dbt", "BigQuery"],
-    "metrics": { "runtime": 75, "cost": 20 },
-    "images": ["/projects/automation.png"],
-    "links": { "repo": "https://github.com/[your-handle]/automation" }
+    "slug": "rideview-sf-taxi-explorer",
+    "title": "RideView SF: Taxi Flow Explorer",
+    "summary": "Streamlit app with 3D PyDeck heatmap, filters, and downloads for San Francisco taxi data.",
+    "problem": "Urban planners needed ad-hoc exploration of taxi flows with low-latency filtering.",
+    "approach": "Implemented PyDeck heatmaps, caching, and async pulls, with exportable filtered datasets.",
+    "impact": "Reduced query wait time by ~60%, improving planning workflows and data accessibility.",
+    "tech": ["Streamlit", "PyDeck", "Pandas", "AsyncIO"],
+    "metrics": { "waitTimeReductionPct": 60 },
+    "images": [],
+    "links": { "repo": "https://github.com/ChinmayShanbhag/sf-taxi-heatmap" }
+  },
+  {
+    "slug": "police-stops-analysis-dashboard",
+    "title": "Police Stops Analysis Dashboard",
+    "summary": "Dashboard for outcome, search rate, and significance exploration on 280K+ Vermont stops.",
+    "problem": "Reporters and researchers needed transparent analytics and statistical tests on stops data.",
+    "approach": "Cleaned and modeled data; added Veil of Darkness test, confidence intervals, and p-value annotations.",
+    "impact": "Enabled one-click exports and clearer statistical context for public reporting.",
+    "tech": ["Python", "Pandas", "Plotly", "StatsModels"],
+    "metrics": { "records": 280000 },
+    "images": [],
+    "links": { "repo": "https://github.com/ChinmayShanbhag/Police-Stops-Analysis" }
+  },
+  {
+    "slug": "ipo-underperformance-prediction",
+    "title": "IPO Underperformance Prediction",
+    "summary": "Built ANN, SVM, and ensemble models to predict underperforming IPOs.",
+    "problem": "Analysts needed an early signal for IPOs likely to underperform.",
+    "approach": "Engineered features and compared models; delivered scenario forecasts.",
+    "impact": "Achieved ~68% accuracy and provided interpretable outputs for decision support.",
+    "tech": ["Python", "scikit-learn", "Pandas"],
+    "metrics": { "accuracyPct": 68 },
+    "images": [],
+    "links": {}
   }
 ]

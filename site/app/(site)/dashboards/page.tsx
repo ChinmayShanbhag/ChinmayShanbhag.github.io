@@ -6,22 +6,29 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "rec
 type Row = { date: string; category: string; value: number };
 
 const data: Row[] = [
-  { date: "2024-01-01", category: "A", value: 12 },
-  { date: "2024-01-02", category: "A", value: 19 },
-  { date: "2024-01-03", category: "B", value: 8 },
-  { date: "2024-01-04", category: "B", value: 14 },
-  { date: "2024-01-05", category: "C", value: 10 },
+  { date: "2024-01-01", category: "Retail", value: 120 },
+  { date: "2024-02-01", category: "Retail", value: 134 },
+  { date: "2024-03-01", category: "Retail", value: 142 },
+  { date: "2024-04-01", category: "Retail", value: 151 },
+  { date: "2024-01-01", category: "Electronics", value: 90 },
+  { date: "2024-02-01", category: "Electronics", value: 102 },
+  { date: "2024-03-01", category: "Electronics", value: 99 },
+  { date: "2024-04-01", category: "Electronics", value: 115 },
+  { date: "2024-01-01", category: "Grocery", value: 140 },
+  { date: "2024-02-01", category: "Grocery", value: 138 },
+  { date: "2024-03-01", category: "Grocery", value: 145 },
+  { date: "2024-04-01", category: "Grocery", value: 149 }
 ];
 
 export default function DashboardsPage() {
-  const [selected, setSelected] = useState<string>("A");
+  const [selected, setSelected] = useState<string>("Retail");
   const filtered = useMemo(() => data.filter((d) => d.category === selected), [selected]);
   return (
     <section className="mx-auto max-w-6xl px-4 py-12 space-y-8">
-      <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
+      <h1 className="text-2xl font-semibold tracking-tight">Sales Trend by Category</h1>
       <Card>
         <div className="flex items-center gap-2 flex-wrap mb-4">
-          {["A", "B", "C"].map((c) => (
+          {["Retail", "Electronics", "Grocery"].map((c) => (
             <button
               key={c}
               onClick={() => setSelected(c)}

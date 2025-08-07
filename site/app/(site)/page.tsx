@@ -25,7 +25,7 @@ export default function HomePage() {
         easing: "easeOutQuad",
         delay: anime.stagger(60) as number,
       });
-      const values = [128, 42, 12];
+      const values = [20, 280000, 2];
       values.forEach((val, idx) => {
         anime({
           targets: counterRef.current[idx] as unknown as Element,
