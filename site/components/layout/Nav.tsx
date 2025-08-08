@@ -18,6 +18,7 @@ export default function Nav() {
   const pathname = usePathname();
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -36,10 +37,10 @@ export default function Nav() {
         hidden ? "-translate-y-full" : "translate-y-0",
       )}
     >
-      <nav className="backdrop-blur bg-[var(--color-background)]/80 text-[color:var(--color-foreground)] border-b border-black/5 dark:border-white/10">
+      <nav className="backdrop-blur bg-[var(--color-background)]/80 text-[var(--color-foreground)] border-b border-black/5 dark:border-white/10">
         <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
           <Link href="/" className="font-semibold tracking-tight">
-            [Your Name]
+            Chinmay Shanbhag
           </Link>
           <div className="hidden md:flex items-center gap-2">
             {links.map((l) => (
@@ -60,11 +61,30 @@ export default function Nav() {
           </div>
           <div className="md:hidden flex items-center gap-2">
             <ThemeToggle />
-            <Button asChild variant="outline" size="sm">
-              <Link href="/contact">Contact</Link>
+            <Button variant="outline" size="sm" onClick={() => setOpen((v) => !v)} aria-label="Menu">
+              Menu
             </Button>
           </div>
         </div>
+        {open && (
+          <div className="md:hidden border-t border-black/5 dark:border-white/10 px-4 py-3 space-y-2">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={cn(
+                  "block px-3 py-2 rounded-md text-sm",
+                  pathname === l.href
+                    ? "bg-black/5 dark:bg-white/10"
+                    : "hover:bg-black/5 dark:hover:bg-white/10",
+                )}
+                onClick={() => setOpen(false)}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+        )}
       </nav>
     </div>
   );
