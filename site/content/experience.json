@@ -1,0 +1,80 @@
+[
+  {
+    "company": "Balance AI",
+    "role": "AI Engineer",
+    "location": "New York, United States",
+    "dates": "June 2025 - Present (1 month)",
+    "bullets": []
+  },
+  {
+    "company": "Indiana University - Kelley School of Business",
+    "role": "Data Analyst - Graduate Assistant",
+    "location": "[Add later]",
+    "dates": "September 2024 - March 2025 (7 months)",
+    "bullets": [
+      "Engineered a process to efficiently fetch time series data for approximately 100 million products across multiple Amazon categories, encompassing both US and UK marketplaces.",
+      "Processed and analyzed large datasets to uncover trends and insights, including a project investigating the impact of layoffs on local economies and county-level demographics.",
+      "Conducted multiple data-driven projects, including analysis of census data, weather data, and product ingredient research, leveraging Python and data visualization tools to deliver impactful results."
+    ]
+  },
+  {
+    "company": "Indiana University Maurer School of Law",
+    "role": "Data Visualization Analyst - Research Assistant",
+    "location": "[Add later]",
+    "dates": "August 2024 - December 2024 (5 months)",
+    "bullets": [
+      "Analyzed 25 U.S. university syllabi to create visualizations and insights for a cybersecurity syllabus book.",
+      "Utilized advanced data analysis on over 100 data points to uncover key trends and shape academic resources.",
+      "Contributed to the development of a comprehensive academic resource for cybersecurity education at Indiana University Maurer School of Law."
+    ]
+  },
+  {
+    "company": "Indiana University School of Public Health-Bloomington",
+    "role": "Automation and Data Reporting Analyst - Faculty Assistant",
+    "location": "[Add later]",
+    "dates": "May 2024 - July 2024 (3 months)",
+    "bullets": [
+      "Managed large-scale datasets in SPSS (.sav), overseeing 175+ variables to ensure data accuracy and consistency.",
+      "Automated the generation of 90-page institution-specific reports using Python — cutting report creation time by 90%.",
+      "Designed engaging visualizations to highlight key insights in mental health, substance use, and gambling behaviors.",
+      "Developed a scalable solution to replicate reports across 20+ colleges in Indiana with minimal manual effort."
+    ]
+  },
+  {
+    "company": "Indiana University Bloomington",
+    "role": "Assistant Manager - Dining and Hospitality",
+    "location": "Bloomington, Indiana, United States",
+    "dates": "December 2024 - May 2025 (6 months)",
+    "bullets": [
+      "Managed dining and hospitality operations at Indiana University Bloomington, ensuring exceptional customer service and satisfaction.",
+      "Oversaw staff training and development, resulting in improved efficiency and performance.",
+      "Implemented cost-saving measures without compromising quality standards.",
+      "Collaborated with cross-functional teams to enhance the overall dining experience for students and staff."
+    ]
+  },
+  {
+    "company": "Indiana University Bloomington",
+    "role": "Operations Supervisor - Dining and Hospitality",
+    "location": "Bloomington, Indiana, United States",
+    "dates": "March 2024 - December 2024 (10 months)",
+    "bullets": []
+  },
+  {
+    "company": "Indiana University Bloomington",
+    "role": "Student Employee - Dining and Hospitality",
+    "location": "Bloomington, Indiana, United States",
+    "dates": "August 2023 - March 2024 (8 months)",
+    "bullets": []
+  },
+  {
+    "company": "Tesler",
+    "role": "Software Engineer Intern",
+    "location": "Nagpur, Maharashtra, India",
+    "dates": "September 2021 - March 2022 (7 months)",
+    "bullets": [
+      "Built a platform for local businesses, enhancing efficiency and reach with scalable cloud services.",
+      "Automated data management with Python and SQL, improving availability by 70% for better decision-making.",
+      "Led a cross-functional team to deliver web and mobile apps using Agile, completing the project 2 weeks early."
+    ]
+  }
+]
