@@ -22,6 +22,6 @@ export default function Reveal({ children, delay = 0 }: { children: React.ReactN
     io.observe(el);
     return () => io.disconnect();
   }, [delay]);
-  return <div ref={ref} style={{ opacity: 0 }}>{children}</div>;
+  return <div ref={ref} className="will-change-transform">{children}</div>;
 }
 
