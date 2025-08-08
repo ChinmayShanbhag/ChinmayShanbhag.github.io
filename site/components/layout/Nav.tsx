@@ -37,7 +37,7 @@ export default function Nav() {
         hidden ? "-translate-y-full" : "translate-y-0",
       )}
     >
-      <nav className="backdrop-blur bg-white/80 dark:bg-black/80 text-black dark:text-white border-b border-black/5 dark:border-white/10">
+      <nav className="backdrop-blur bg-background/80 text-foreground border-b border-border">
         <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
           <Link href="/" className="font-semibold tracking-tight">
             Chinmay Shanbhag
@@ -49,9 +49,7 @@ export default function Nav() {
                 href={l.href}
                 className={cn(
                   "px-3 py-2 rounded-md text-sm",
-                  pathname === l.href
-                    ? "bg-black/5 dark:bg-white/10"
-                    : "hover:bg-black/5 dark:hover:bg-white/10",
+                  pathname === l.href ? "bg-muted" : "hover:bg-muted",
                 )}
               >
                 {l.label}
@@ -61,22 +59,20 @@ export default function Nav() {
           </div>
           <div className="md:hidden flex items-center gap-2">
             <ThemeToggle />
-            <Button variant="outline" size="sm" onClick={() => setOpen((v) => !v)} aria-label="Menu">
+            <Button variant="outline" size="sm" onClick={() => setOpen(!open)} aria-label="Menu">
               Menu
             </Button>
           </div>
         </div>
         {open && (
-          <div className="md:hidden border-t border-black/5 dark:border-white/10 px-4 py-3 space-y-2">
+          <div className="md:hidden border-t border-border px-4 py-3 space-y-2">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 className={cn(
                   "block px-3 py-2 rounded-md text-sm",
-                  pathname === l.href
-                    ? "bg-black/5 dark:bg-white/10"
-                    : "hover:bg-black/5 dark:hover:bg-white/10",
+                  pathname === l.href ? "bg-muted" : "hover:bg-muted",
                 )}
                 onClick={() => setOpen(false)}
               >

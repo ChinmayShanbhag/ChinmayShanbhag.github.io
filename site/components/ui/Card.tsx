@@ -4,7 +4,7 @@ export function Card({ className, children }: { className?: string; children: Re
   return (
     <div
       className={cn(
-        "rounded-xl border border-black/5 dark:border-white/10 bg-white/60 dark:bg-black/40 text-black dark:text-white backdrop-blur p-5",
+        "rounded-xl border border-border bg-card text-card-foreground backdrop-blur p-5",
         className,
       )}
     >
@@ -19,6 +19,6 @@ export function Badge({ children }: { children: React.ReactNode }) {
 
 export function Chip({ children }: { children: React.ReactNode }) {
   return (
-    <span className="text-xs rounded-md bg-black/5 dark:bg-white/10 px-2 py-1">{children}</span>
+    <span className="text-xs rounded-md bg-muted text-muted-foreground px-2 py-1">{children}</span>
   );
 }

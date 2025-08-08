@@ -3,7 +3,7 @@ import Footer from "@/components/layout/Footer";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-dvh flex flex-col bg-white dark:bg-black text-black dark:text-white">
+    <div className="min-h-dvh flex flex-col bg-background text-foreground">
       <Nav />
       <main className="flex-1">{children}</main>
       <Footer />

@@ -1,8 +1,42 @@
 @import "tailwindcss";
 
-@theme inline {
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Light theme colors */
+  --color-background: 255 255 255;
+  --color-foreground: 15 23 42;
+  --color-muted: 241 245 249;
+  --color-muted-foreground: 100 116 139;
+  
+  /* Card colors */
+  --color-card: 255 255 255;
+  --color-card-foreground: 15 23 42;
+  
+  /* Border colors */
+  --color-border: 226 232 240;
+  
+  /* Primary colors */
+  --color-primary: 15 23 42;
+  --color-primary-foreground: 248 250 252;
+}
+
+@theme dark {
+  --color-background: 2 6 23;
+  --color-foreground: 248 250 252;
+  --color-muted: 30 41 59;
+  --color-muted-foreground: 148 163 184;
+  
+  --color-card: 15 23 42;
+  --color-card-foreground: 248 250 252;
+  
+  --color-border: 30 41 59;
+  
+  --color-primary: 248 250 252;
+  --color-primary-foreground: 15 23 42;
 }
 
 * {
@@ -15,17 +49,7 @@ body,
   height: 100%;
 }
 
-html {
-  background-color: white;
-  color: black;
-}
-
-html.dark {
-  background-color: black;
-  color: white;
-}
-
 body {
-  background-color: inherit;
-  color: inherit;
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
 }
