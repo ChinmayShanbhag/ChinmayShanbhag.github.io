@@ -5,8 +5,27 @@
   --font-mono: var(--font-geist-mono);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #__next {
   height: 100%;
+}
+
+html {
+  background-color: white;
+  color: black;
+}
+
+html.dark {
+  background-color: black;
+  color: white;
+}
+
+body {
+  background-color: inherit;
+  color: inherit;
 }
