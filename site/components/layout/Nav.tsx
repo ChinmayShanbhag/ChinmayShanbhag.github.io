@@ -36,7 +36,7 @@ export default function Nav() {
         hidden ? "-translate-y-full" : "translate-y-0",
       )}
     >
-      <nav className="backdrop-blur supports-[backdrop-filter]:bg-background/70 bg-background/80 border-b border-black/5 dark:border-white/10">
+      <nav className="backdrop-blur bg-[var(--color-background)]/80 text-[color:var(--color-foreground)] border-b border-black/5 dark:border-white/10">
         <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
           <Link href="/" className="font-semibold tracking-tight">
             [Your Name]
