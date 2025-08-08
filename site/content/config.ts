@@ -1,7 +1,7 @@
 export const siteConfig = {
   siteName: "Chinmay Shanbhag",
   siteDescription:
-    "Analyst specializing in KPI dashboards, financial modelling, automation, and data storytelling with SQL, Tableau, and Power BI",
+    "Analyst specialising in KPI dashboards, financial modelling, automation and data storytelling with SQL, Tableau and Power BI",
   baseUrl: "https://chinmayshanbhag.github.io",
   city: "Bloomington, Indiana",
   email: "chinmay.shanbhag@gmail.com",

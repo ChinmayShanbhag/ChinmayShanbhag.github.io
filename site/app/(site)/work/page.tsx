@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Card, Chip } from "@/components/ui/Card";
 import { getProjects } from "@/lib/data";
 import { InlineChart } from "@/ui/charts/InlineChart";
+import Reveal from "@/components/ux/Reveal";
 
 export default function WorkPage() {
   const projects = getProjects();
@@ -11,26 +12,29 @@ export default function WorkPage() {
       <div className="grid md:grid-cols-2 gap-6">
         {projects.map((p) => (
           <Link key={p.slug} href={`/work/${p.slug}`}>
-            <Card className="hover:shadow-sm transition-shadow">
-              <div className="flex flex-col gap-2">
-                <h3 className="font-medium">{p.title}</h3>
-                <p className="text-sm opacity-80">{p.summary}</p>
-                <div className="flex flex-wrap gap-2">
-                  {p.tech.slice(0, 4).map((t) => (
-                    <Chip key={t}>{t}</Chip>
-                  ))}
+            <Reveal>
+              <Card className="hover:shadow-sm transition-shadow">
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-medium">{p.title}</h3>
+                  <p className="text-sm opacity-80">{p.summary}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {p.tech.slice(0, 4).map((t) => (
+                      <Chip key={t}>{t}</Chip>
+                    ))}
+                  </div>
+                  <div>
+                    <div className="text-xs opacity-70 mb-1">Sample Data</div>
+                    <InlineChart
+                      data={[
+                        { x: 1, y: 2 },
+                        { x: 2, y: 3 },
+                        { x: 3, y: 1 },
+                      ]}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <InlineChart
-                    data={[
-                      { x: 1, y: 2 },
-                      { x: 2, y: 3 },
-                      { x: 3, y: 1 },
-                    ]}
-                  />
-                </div>
-              </div>
-            </Card>
+              </Card>
+            </Reveal>
           </Link>
         ))}
       </div>

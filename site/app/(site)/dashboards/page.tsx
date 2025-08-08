@@ -1,6 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import { Card } from "@/components/ui/Card";
+import Reveal from "@/components/ux/Reveal";
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 
 type Row = { date: string; category: string; value: number };
@@ -26,6 +27,7 @@ export default function DashboardsPage() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-12 space-y-8">
       <h1 className="text-2xl font-semibold tracking-tight">Sales Trend by Category</h1>
+      <Reveal>
       <Card>
         <div className="flex items-center gap-2 flex-wrap mb-4">
           {["Retail", "Electronics", "Grocery"].map((c) => (
@@ -58,6 +60,19 @@ export default function DashboardsPage() {
           </ResponsiveContainer>
         </div>
       </Card>
+      </Reveal>
+      <Reveal>
+        <div className="text-sm opacity-70">Sample Data</div>
+      </Reveal>
+      <Reveal>
+        <div className="mt-6">
+          <iframe
+            src="https://police-stops-analysis-chvshan.streamlit.app/?embed=true"
+            className="w-full h-[600px] border-none"
+            loading="lazy"
+          />
+        </div>
+      </Reveal>
     </section>
   );
 }

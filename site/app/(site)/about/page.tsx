@@ -1,8 +1,6 @@
 import { Card, Chip } from "@/components/ui/Card";
-import { getProfile } from "@/lib/data";
 
 export default function AboutPage() {
-  const profile = getProfile();
   return (
     <section className="mx-auto max-w-6xl px-4 py-12 space-y-8">
       <h1 className="text-2xl font-semibold tracking-tight">About</h1>
